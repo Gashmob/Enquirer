@@ -9,4 +9,6 @@
 
 #define ENQUIRER_VERSION "0.1.0"
 
+#include <iostream>
+
 #endif //ENQUIRER_HPP

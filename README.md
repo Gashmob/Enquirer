@@ -4,24 +4,37 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
 
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Auth](#auth)
-  - [Autocomplete](#autocomplete)
-  - [Confirm](#confirm)
-  - [Form](#form)
-  - [Input](#input)
-  - [Invisible](#invisible)
-  - [List](#list)
-  - [MultiSelect](#multiselect)
-  - [Number](#number)
-  - [Quiz](#quiz)
-  - [Slider](#slider)
-  - [Select](#select)
-  - [Toggle](#toggle)
+    - [Auth](#auth)
+    - [Autocomplete](#autocomplete)
+    - [Confirm](#confirm)
+    - [Form](#form)
+    - [Input](#input)
+    - [Invisible](#invisible)
+    - [List](#list)
+    - [MultiSelect](#multiselect)
+    - [Number](#number)
+    - [Quiz](#quiz)
+    - [Slider](#slider)
+    - [Select](#select)
+    - [Toggle](#toggle)
 - [TODO](#todo)
 
 ## Installation
 
 This library is a header only, so you can just add the header (`include/enquirer/enquirer.hpp`) in your project.
+
+But you can also install the static and shared library :
+
+```shell
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
+
+It will install `libEnquirer.a` and `libEnquirer.so` in your `lib` directory. You can also download it from the release
+page on GitHub.
 
 ## Usage
 
@@ -250,7 +263,7 @@ double pi = enquirer::number<double>("What is the value of PI?");
 
 ![Image]()
 
-### Password
+### Password
 
 Mask the user input with `*`.
 
