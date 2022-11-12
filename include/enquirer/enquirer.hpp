@@ -333,8 +333,66 @@ namespace enquirer {
 // Select
 
     std::string select(const std::string &question,
-                       const std::string choices[]) {
-        return ""; // TODO
+                       const std::vector<std::string> &choices) {
+        // Print question
+        utils::print_question(question);
+        std::cout << std::endl;
+
+        uint choice = 0;
+
+        // Print choices
+        for (uint i = 0; i < choices.size(); i++) {
+            if (i == choice) {
+                std::cout << color::cyan << color::bold << "> " << color::reset
+                          << color::cyan << color::underline << choices[i] << color::reset << std::endl;
+            } else {
+                std::cout << "  " << choices[i] << std::endl;
+            }
+        }
+
+        // Get answer
+        char current;
+        utils::enable_raw_mode();
+        std::cout << utils::hide_cursor();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 65 && choice > 0) { // Up
+                            choice--;
+                        } else if (current == 66 && choice < choices.size() - 1) { // Down
+                            choice++;
+                        }
+                    }
+                }
+            }
+
+            // Redraw choices
+            std::cout << utils::move_up(choices.size())
+                      << utils::move_left(1000);
+            for (uint i = 0; i < choices.size(); i++) {
+                if (i == choice) {
+                    std::cout << color::cyan << color::bold << "> " << color::reset
+                              << color::cyan << color::underline << choices[i] << color::reset << std::endl;
+                } else {
+                    std::cout << "  " << choices[i] << std::endl;
+                }
+            }
+        }
+        std::cout << utils::show_cursor();
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_up(choices.size() + 1)
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << choices[choice] << std::endl;
+
+        return choices[choice];
     }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

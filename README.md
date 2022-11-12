@@ -330,7 +330,7 @@ Choose one item from a list.
 
 ```c++
 std::string select(const std::string &question,
-                   const std::string choices[]);
+                   const std::vector<std::string> &choices);
 ```
 
 **Example**
