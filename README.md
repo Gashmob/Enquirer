@@ -138,7 +138,7 @@ Multi-prompt for user
 
 ```c++
 std::map<std::string, std::string> form(const std::string &question,
-                                        const std::string inputs[])
+                                        const std::string inputs[]);
 ```
 
 **Example**
