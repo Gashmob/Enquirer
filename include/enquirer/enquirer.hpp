@@ -558,7 +558,45 @@ namespace enquirer {
 
     std::string password(const std::string &question,
                          char mask = '*') {
-        return ""; // TODO
+        // Print question
+        utils::print_question(question);
+
+        // Get answer
+        std::string answer;
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    std::cout << std::endl;
+                    break;
+                } else if (current == 127) { // Backspace
+                    if (!answer.empty()) {
+                        answer.pop_back();
+                        std::cout << utils::move_left(1);
+                        std::cout << utils::clear_line(utils::EOL);
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        // Ignore arrow keys
+                    }
+                }
+            } else { // 'Normal' character
+                answer += current;
+                std::cout << mask;
+            }
+        }
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << color::cyan << std::string(answer.size(), mask) << color::reset << std::endl;
+
+        return answer;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

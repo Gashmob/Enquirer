@@ -20,6 +20,7 @@ int main() {
                 "list",
                 "multiselect",
                 "number",
+                "password",
                 "select",
                 "toggle"
         });
@@ -57,6 +58,9 @@ int main() {
         } else if (choice == "number") {
             auto n = enquirer::number<float>("Enter a number");
             cout << "'" << n << "'" << endl;
+        } else if (choice == "password") {
+            string pwd = enquirer::password("Enter your password");
+            cout << "'" << pwd << "'" << endl;
         } else if (choice == "select") {
             string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
             cout << "'" << answer << "'" << endl;
