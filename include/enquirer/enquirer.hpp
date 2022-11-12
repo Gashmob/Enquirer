@@ -100,8 +100,8 @@ namespace enquirer {
          * Clear line then print the question
          */
         inline void print_question(const std::string &question,
-                                   const std::string &symbol = color::cyan + "? ",
-                                   const std::string &input = color::grey + "› ") {
+                                   const std::string &symbol = color::cyan + color::bold + "? ",
+                                   const std::string &input = color::grey + color::bold + "› ") {
             std::cout << clear_line(LINE);
             std::cout << symbol
                       << color::reset << question
@@ -113,7 +113,7 @@ namespace enquirer {
          * Print the question as it's answered
          */
         inline void print_answer(const std::string &question) {
-            print_question(question, color::green + color::bold + "✔ ", color::grey + "· ");
+            print_question(question, color::green + color::bold + "✔ ", color::grey + color::bold + "· ");
         }
 
         inline void enable_raw_mode() {
