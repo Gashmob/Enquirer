@@ -198,7 +198,7 @@ namespace enquirer {
         // Print resume
         std::cout << utils::move_left(1000);
         utils::print_answer(question);
-        std::cout << (confirmed ? "Yes" : "No") << std::endl;
+        std::cout << (confirmed ? color::green : color::red) << (confirmed ? "Yes" : "No") << color::reset << std::endl;
 
         return confirmed;
     }
@@ -271,7 +271,7 @@ namespace enquirer {
         std::cout << utils::move_up()
                   << utils::move_left(1000);
         utils::print_answer(question);
-        std::cout << answer << std::endl;
+        std::cout << color::cyan << answer << color::reset << std::endl;
 
         return answer;
     }
@@ -436,7 +436,7 @@ namespace enquirer {
         std::cout << utils::move_up()
                   << utils::move_left(1000);
         utils::print_answer(question);
-        std::cout << choices[choice] << std::endl;
+        std::cout << color::cyan << choices[choice] << color::reset << std::endl;
 
         return choices[choice];
     }
