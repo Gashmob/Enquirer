@@ -23,19 +23,6 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
 
 This library is a header only, so you can just add the header (`include/enquirer/enquirer.hpp`) in your project.
 
-But you can also install the static and shared library :
-
-```shell
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-```
-
-It will install `libEnquirer.a` and `libEnquirer.so` in your `lib` directory. You can also download it from the release
-page on GitHub.
-
 ## Usage
 
 Please note :
