@@ -162,8 +162,8 @@ namespace enquirer {
         }
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Auth
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Auth
 
     std::pair<std::string, std::string> auth(const std::string &id_prompt = "Username",
                                              const std::string &pw_prompt = "Password") {
@@ -176,8 +176,8 @@ namespace enquirer {
         return false; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Autocomplete
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Autocomplete
 
     std::string autocomplete(const std::string &question,
                              const std::string choices[] = {},
@@ -185,8 +185,8 @@ namespace enquirer {
         return ""; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Confirm
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Confirm
 
     bool confirm(const std::string &question,
                  bool default_value = false) {
@@ -235,16 +235,16 @@ namespace enquirer {
         return confirmed;
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Form
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Form
 
     std::map<std::string, std::string> form(const std::string &question,
                                             const std::string inputs[]) {
         return {}; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Input
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Input
 
     std::string input(const std::string &question,
                       const std::string &default_value = "") {
@@ -308,8 +308,8 @@ namespace enquirer {
         return answer;
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Invisible
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Invisible
 
     std::string invisible(const std::string &question) {
         // Print question
@@ -352,8 +352,8 @@ namespace enquirer {
         return answer;
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// List
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // List
 
     std::vector<std::string> list(const std::string &question) {
         // Print question
@@ -404,8 +404,8 @@ namespace enquirer {
         return items;
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// MultiSelect
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // MultiSelect
 
     std::vector<std::string> multi_select(const std::string &question,
                                           const std::vector<std::string> &choices) {
@@ -501,24 +501,24 @@ namespace enquirer {
         return items;
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Number
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Number
 
     template<typename N>
     typename std::enable_if<std::is_arithmetic<N>::value>::type number(const std::string &question) {
         return 0; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Password
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Password
 
     std::string password(const std::string &question,
                          char mask = '*') {
         return ""; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Quiz
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Quiz
 
     bool quiz(const std::string &question,
               const std::string choices[],
@@ -526,8 +526,8 @@ namespace enquirer {
         return false; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Slider
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Slider
 
     template<typename N>
     typename std::enable_if<std::is_arithmetic<N>::value>::type slider(const std::string &question,
@@ -538,8 +538,8 @@ namespace enquirer {
         return 0; // TODO
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Select
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Select
 
     std::string select(const std::string &question,
                        const std::vector<std::string> &choices) {
@@ -607,8 +607,8 @@ namespace enquirer {
         return choices[choice];
     }
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Toggle
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Toggle
 
     bool toggle(const std::string &question,
                 const std::string &enable,
