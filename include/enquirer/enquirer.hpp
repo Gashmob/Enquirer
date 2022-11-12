@@ -98,11 +98,13 @@ namespace enquirer {
         /**
          * Clear line then print the question
          */
-        inline void print_question(const std::string &question) {
+        inline void print_question(const std::string &question,
+                                   const std::string &symbol = color::cyan + "?",
+                                   const std::string &input = color::grey + "›") {
             std::cout << clear_line(LINE);
-            std::cout << color::cyan << "? "
+            std::cout << symbol << " "
                       << color::reset << question
-                      << color::grey << " › "
+                      << " " << input << " "
                       << color::reset;
         }
 
@@ -110,11 +112,7 @@ namespace enquirer {
          * Print the question as it's answered
          */
         inline void print_answer(const std::string &question) {
-            std::cout << clear_line(LINE);
-            std::cout << color::green << "✔ "
-                      << color::reset << question
-                      << color::grey << " · "
-                      << color::reset;
+            print_question(question, color::green + "✔", color::grey + "·");
         }
 
         inline void enable_raw_mode() {
