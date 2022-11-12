@@ -19,6 +19,7 @@ int main() {
                 "invisible",
                 "list",
                 "multiselect",
+                "number",
                 "select",
                 "toggle"
         });
@@ -53,6 +54,9 @@ int main() {
                 cout << "'" << keyword << "' ";
             }
             cout << endl;
+        } else if (choice == "number") {
+            auto n = enquirer::number<float>("Enter a number");
+            cout << "'" << n << "'" << endl;
         } else if (choice == "select") {
             string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
             cout << "'" << answer << "'" << endl;

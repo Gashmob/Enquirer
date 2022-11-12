@@ -504,9 +504,53 @@ namespace enquirer {
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
     // Number
 
-    template<typename N>
-    typename std::enable_if<std::is_arithmetic<N>::value>::type number(const std::string &question) {
-        return 0; // TODO
+    template<typename N,
+            typename = typename std::enable_if<std::is_arithmetic<N>::value>::type>
+    N number(const std::string &question) {
+        // Print question
+        utils::print_question(question);
+
+        // Get answer
+        std::string answer;
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    std::cout << std::endl;
+                    break;
+                } else if (current == 127) { // Backspace
+                    if (!answer.empty()) {
+                        answer.pop_back();
+                        std::cout << utils::move_left(1);
+                        std::cout << utils::clear_line(utils::EOL);
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        // Ignore arrow keys
+                    }
+                }
+            } else if (std::isdigit(current) || current == '.') { // 'Normal' character
+                answer += current;
+                std::cout << current;
+            }
+        }
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << color::cyan << answer << color::reset << std::endl;
+
+        // Convert answer to number type N
+        std::stringstream ss(answer);
+        N number;
+        ss >> number;
+
+        return number;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
