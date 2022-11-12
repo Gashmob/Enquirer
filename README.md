@@ -394,6 +394,7 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [x] List
 - [x] MultiSelect
 - [x] Number
+- [ ] Password
 - [ ] Quiz
 - [ ] Slider
 - [x] Select
