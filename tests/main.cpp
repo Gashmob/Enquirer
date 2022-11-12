@@ -21,6 +21,7 @@ int main() {
                 "multiselect",
                 "number",
                 "password",
+                "quiz",
                 "select",
                 "toggle"
         });
@@ -61,6 +62,9 @@ int main() {
         } else if (choice == "password") {
             string pwd = enquirer::password("Enter your password");
             cout << "'" << pwd << "'" << endl;
+        } else if (choice == "quiz") {
+            bool answer = enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana");
+            cout << "'" << answer << "'" << endl;
         } else if (choice == "select") {
             string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
             cout << "'" << answer << "'" << endl;

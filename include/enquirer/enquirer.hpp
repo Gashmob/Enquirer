@@ -603,9 +603,71 @@ namespace enquirer {
     // Quiz
 
     bool quiz(const std::string &question,
-              const std::string choices[],
+              const std::vector<std::string> &choices,
               const std::string &correct) {
-        return false; // TODO
+        // Print question
+        utils::print_question(question);
+        std::cout << std::endl;
+
+        uint choice = 0;
+
+        // Print choices
+        for (uint i = 0; i < choices.size(); i++) {
+            if (i == choice) {
+                std::cout << color::cyan << color::bold << "> " << color::reset
+                          << color::cyan << color::underline << choices[i] << color::reset << std::endl;
+            } else {
+                std::cout << "  " << choices[i] << std::endl;
+            }
+        }
+
+        // Get answer
+        char current;
+        utils::enable_raw_mode();
+        std::cout << utils::hide_cursor();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 65) { // Up
+                            choice = (choice == 0) ? choices.size() - 1 : choice - 1;
+                        } else if (current == 66) { // Down
+                            choice = (choice == choices.size() - 1) ? 0 : choice + 1;
+                        }
+                    }
+                }
+            }
+
+            // Redraw choices
+            std::cout << utils::move_up(choices.size())
+                      << utils::move_left(1000);
+            for (uint i = 0; i < choices.size(); i++) {
+                if (i == choice) {
+                    std::cout << color::cyan << color::bold << "> " << color::reset
+                              << color::cyan << color::underline << choices[i] << color::reset << std::endl;
+                } else {
+                    std::cout << "  " << choices[i] << std::endl;
+                }
+            }
+        }
+        std::cout << utils::show_cursor();
+        utils::disable_raw_mode();
+
+        // Print resume
+        for (uint i = 0; i < choices.size(); i++) { // Clear choices
+            std::cout << utils::move_up() << utils::clear_line(utils::EOL);
+        }
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        bool result = (choices[choice] == correct);
+        std::cout << (result ? color::green : color::red) << choices[choice] << color::reset << std::endl;
+
+        return result;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

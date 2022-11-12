@@ -292,7 +292,7 @@ Multi-choice quiz !
 
 ```c++
 bool quiz(const std::string &question,
-          const std::string choices[],
+          const std::vector<std::string> &choices,
           const std::string &correct);
 ```
 
@@ -395,7 +395,7 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [x] MultiSelect
 - [x] Number
 - [x] Password
-- [ ] Quiz
+- [x] Quiz
 - [ ] Slider
 - [x] Select
 - [x] Toggle
