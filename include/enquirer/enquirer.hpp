@@ -13,6 +13,8 @@
 #include <functional>
 #include <map>
 #include <vector>
+#include <unistd.h>
+#include <termios.h>
 
 namespace enquirer {
 
@@ -41,36 +43,42 @@ namespace enquirer {
         /**
          * Move the cursor n times upward
          */
-        inline std::string move_up(int n = 1) {
+        inline std::string move_up(uint n = 1) {
             return "\033[" + std::to_string(n) + "A";
         }
 
         /**
          * Move the cursor n times downward
          */
-        inline std::string move_down(int n = 1) {
+        inline std::string move_down(uint n = 1) {
             return "\033[" + std::to_string(n) + "B";
         }
 
         /**
          * Move the cursor n times to the left
          */
-        inline std::string move_left(int n = 1) {
+        inline std::string move_left(uint n = 1) {
             return "\033[" + std::to_string(n) + "D";
         }
 
         /**
          * Move the cursor n times to the right
          */
-        inline std::string move_right(int n = 1) {
+        inline std::string move_right(uint n = 1) {
             return "\033[" + std::to_string(n) + "C";
         }
+
+        typedef enum {
+            EOL = 0,
+            BOL = 1,
+            LINE = 2
+        } clear_mode;
 
         /**
          * Clear entire line
          */
-        inline std::string clear_line() {
-            return "\033[K";
+        inline std::string clear_line(clear_mode mode) {
+            return "\033[" + std::to_string(mode) + "K";
         }
 
         /**
@@ -89,14 +97,38 @@ namespace enquirer {
 
         /**
          * Clear line then print the question
-         * @param str
          */
         inline void print_question(const std::string &question) {
-            std::cout << clear_line();
+            std::cout << clear_line(LINE);
             std::cout << color::cyan << "? "
                       << color::reset << question
-                      << color::grey << " > "
+                      << color::grey << " › "
                       << color::reset;
+        }
+
+        /**
+         * Print the question as it's answered
+         */
+        inline void print_answer(const std::string &question) {
+            std::cout << clear_line(LINE);
+            std::cout << color::green << "✔ "
+                      << color::reset << question
+                      << color::grey << " · "
+                      << color::reset;
+        }
+
+        inline void enable_raw_mode() {
+            struct termios term;
+            tcgetattr(STDIN_FILENO, &term);
+            term.c_lflag &= ~(ECHO | ICANON);
+            tcsetattr(STDIN_FILENO, TCSAFLUSH, &term);
+        }
+
+        inline void disable_raw_mode() {
+            struct termios term;
+            tcgetattr(STDIN_FILENO, &term);
+            term.c_lflag |= (ECHO | ICANON);
+            tcsetattr(STDIN_FILENO, TCSAFLUSH, &term);
         }
     }
 
@@ -143,7 +175,64 @@ namespace enquirer {
 
     std::string input(const std::string &question,
                       const std::string &default_value = "") {
-        return ""; // TODO
+        // Print question
+        utils::print_question(question);
+
+        // Print default value
+        std::cout << color::grey << default_value << color::reset;
+        std::cout << utils::move_left(default_value.size());
+
+        // Get answer
+        std::string answer;
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    std::cout << std::endl;
+                    break;
+                } else if (current == 127) { // Backspace
+                    if (!answer.empty()) {
+                        answer.pop_back();
+                        std::cout << utils::move_left(1);
+                        std::cout << utils::clear_line(utils::EOL);
+                    }
+                } else if (current == 9) { // Tab
+                    if (answer == default_value.substr(0, answer.length())) {
+                        std::cout << default_value.substr(answer.length());
+                        answer = default_value;
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        // Ignore arrow keys
+                    }
+                }
+            } else { // 'Normal' character
+                answer += current;
+                std::cout << current;
+            }
+
+            // Check default_value
+            if (answer == default_value.substr(0, answer.length())) {
+                std::cout << color::grey << default_value.substr(answer.length()) << color::reset;
+                if (answer != default_value) {
+                    std::cout << utils::move_left(default_value.size() - answer.size());
+                }
+            } else if (answer != default_value) {
+                std::cout << utils::clear_line(utils::EOL);
+            }
+        }
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << answer << std::endl;
+
+        return answer;
     }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
