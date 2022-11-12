@@ -99,12 +99,12 @@ namespace enquirer {
          * Clear line then print the question
          */
         inline void print_question(const std::string &question,
-                                   const std::string &symbol = color::cyan + "?",
-                                   const std::string &input = color::grey + "›") {
+                                   const std::string &symbol = color::cyan + "? ",
+                                   const std::string &input = color::grey + "› ") {
             std::cout << clear_line(LINE);
-            std::cout << symbol << " "
+            std::cout << symbol
                       << color::reset << question
-                      << " " << input << " "
+                      << " " << input
                       << color::reset;
         }
 
@@ -112,7 +112,7 @@ namespace enquirer {
          * Print the question as it's answered
          */
         inline void print_answer(const std::string &question) {
-            print_question(question, color::green + "✔", color::grey + "·");
+            print_question(question, color::green + "✔ ", color::grey + "· ");
         }
 
         inline void enable_raw_mode() {
@@ -237,7 +237,44 @@ namespace enquirer {
 // Invisible
 
     std::string invisible(const std::string &question) {
-        return ""; // TODO
+        // Print question
+        utils::print_question(question);
+
+        // Get answer
+        std::string answer;
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    std::cout << std::endl;
+                    break;
+                } else if (current == 127) { // Backspace
+                    if (!answer.empty()) {
+                        answer.pop_back();
+                        std::cout << utils::move_left(1);
+                        std::cout << utils::clear_line(utils::EOL);
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        // Ignore arrow keys
+                    }
+                }
+            } else { // 'Normal' character
+                answer += current;
+            }
+        }
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << std::endl;
+
+        return answer;
     }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
