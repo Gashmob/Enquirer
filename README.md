@@ -387,3 +387,5 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [x] Select
 - [x] Toggle
 - [ ] _**Tests**_
+
+Pour les tests, rediriger cin et cout sur des stringstream pour contrôler l'entrée-sortie.
