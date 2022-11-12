@@ -156,8 +156,51 @@ namespace enquirer {
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
 // Confirm
 
-    bool confirm(const std::string &question) {
-        return false; // TODO
+    bool confirm(const std::string &question,
+                 bool default_value = false) {
+        // Print question
+        utils::print_question(question);
+
+        // Print choices
+        bool confirmed = default_value;
+        std::cout << (confirmed ? "Yes" : "No");
+
+        // Get answer
+        char current;
+        utils::enable_raw_mode();
+        std::cout << utils::hide_cursor();
+        while (std::cin.get(current)) {
+            bool previous = confirmed;
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 68) { // Left
+                            confirmed = true;
+                        } else if (current == 67) { // Right
+                            confirmed = false;
+                        }
+                    }
+                }
+            }
+
+            // Redraw choices
+            std::cout << utils::move_left(previous ? 3 : 2)
+                      << utils::clear_line(utils::EOL)
+                      << (confirmed ? "Yes" : "No");
+        }
+        std::cout << utils::show_cursor();
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << (confirmed ? "Yes" : "No") << std::endl;
+
+        return confirmed;
     }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

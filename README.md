@@ -101,7 +101,8 @@ Ask the user to confirm.
 **Prototype**
 
 ```c++
-bool confirm(const std::string &question);
+bool confirm(const std::string &question,
+             bool default_value = false);
 ```
 
 **Example**

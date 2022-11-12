@@ -15,7 +15,8 @@ int main() {
     string choice = enquirer::select("Choose a function to test:", {
             "input",
             "invisible",
-            "select"
+            "select",
+            "confirm"
     });
 
     if (choice == "input") {
@@ -26,6 +27,9 @@ int main() {
         cout << "'" << answer << "'" << endl;
     } else if (choice == "select") {
         string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
+        cout << "'" << answer << "'" << endl;
+    } else if (choice == "confirm") {
+        bool answer = enquirer::confirm("Do you like this library?", true);
         cout << "'" << answer << "'" << endl;
     }
 
