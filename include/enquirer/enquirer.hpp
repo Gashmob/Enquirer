@@ -113,7 +113,7 @@ namespace enquirer {
          * Print the question as it's answered
          */
         inline void print_answer(const std::string &question) {
-            print_question(question, color::green + "✔ ", color::grey + "· ");
+            print_question(question, color::green + color::bold + "✔ ", color::grey + "· ");
         }
 
         inline void enable_raw_mode() {
@@ -422,7 +422,7 @@ namespace enquirer {
         // Print choices
         for (uint i = 0; i < choices.size(); i++) {
             if (choice[i]) {
-                std::cout << color::green << "✔ " << color::reset;
+                std::cout << color::bold << color::green << "✔ " << color::reset;
             } else {
                 std::cout << color::grey << "✔ " << color::reset;
             }
@@ -463,7 +463,7 @@ namespace enquirer {
                       << utils::move_left(1000);
             for (uint i = 0; i < choices.size(); i++) {
                 if (choice[i]) {
-                    std::cout << color::green << "✔ " << color::reset;
+                    std::cout << color::bold << color::green << "✔ " << color::reset;
                 } else {
                     std::cout << color::grey << "✔ " << color::reset;
                 }
