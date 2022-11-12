@@ -16,10 +16,89 @@
 
 namespace enquirer {
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-// Utilities
+    // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+    // Utilities
 
-// TODO
+    namespace color {
+        const std::string black = "\033[30m";
+        const std::string red = "\033[31m";
+        const std::string green = "\033[32m";
+        const std::string yellow = "\033[33m";
+        const std::string blue = "\033[34m";
+        const std::string magenta = "\033[35m";
+        const std::string cyan = "\033[36m";
+        const std::string white = "\033[37m";
+        const std::string grey = "\033[90m";
+
+        const std::string reset = "\033[0m";
+        const std::string bold = "\033[1m";
+        const std::string underline = "\033[4m";
+        const std::string blink = "\033[5m";
+        const std::string inverse = "\033[7m";
+    }
+
+    namespace utils {
+        /**
+         * Move the cursor n times upward
+         */
+        inline std::string move_up(int n = 1) {
+            return "\033[" + std::to_string(n) + "A";
+        }
+
+        /**
+         * Move the cursor n times downward
+         */
+        inline std::string move_down(int n = 1) {
+            return "\033[" + std::to_string(n) + "B";
+        }
+
+        /**
+         * Move the cursor n times to the left
+         */
+        inline std::string move_left(int n = 1) {
+            return "\033[" + std::to_string(n) + "D";
+        }
+
+        /**
+         * Move the cursor n times to the right
+         */
+        inline std::string move_right(int n = 1) {
+            return "\033[" + std::to_string(n) + "C";
+        }
+
+        /**
+         * Clear entire line
+         */
+        inline std::string clear_line() {
+            return "\033[K";
+        }
+
+        /**
+         * Hide the cursor
+         */
+        inline std::string hide_cursor() {
+            return "\033[?25l";
+        }
+
+        /**
+         * Show the cursor
+         */
+        inline std::string show_cursor() {
+            return "\033[?25h";
+        }
+
+        /**
+         * Clear line then print the question
+         * @param str
+         */
+        inline void print_question(const std::string &question) {
+            std::cout << clear_line();
+            std::cout << color::cyan << "? "
+                      << color::reset << question
+                      << color::grey << " > "
+                      << color::reset;
+        }
+    }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
 // Auth
