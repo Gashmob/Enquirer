@@ -409,7 +409,96 @@ namespace enquirer {
 
     std::vector<std::string> multi_select(const std::string &question,
                                           const std::vector<std::string> &choices) {
-        return {}; // TODO;
+        // Print question
+        utils::print_question(question);
+        std::cout << std::endl;
+
+        uint selected = 0;
+        bool choice[choices.size()];
+        for (uint i = 0; i < choices.size(); i++) {
+            choice[i] = false;
+        }
+
+        // Print choices
+        for (uint i = 0; i < choices.size(); i++) {
+            if (choice[i]) {
+                std::cout << color::green << "✔ " << color::reset;
+            } else {
+                std::cout << color::grey << "✔ " << color::reset;
+            }
+            if (i == selected) {
+                std::cout << color::cyan << color::underline << choices[i] << color::reset << std::endl;
+            } else {
+                std::cout << choices[i] << std::endl;
+            }
+        }
+
+        // Get answer
+        char current;
+        utils::enable_raw_mode();
+        std::cout << utils::hide_cursor();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 65 && selected > 0) { // Up
+                            selected--;
+                        } else if (current == 66 && selected < choices.size() - 1) { // Down
+                            selected++;
+                        } else if (current == 67) { // Right
+                            choice[selected] = true;
+                        } else if (current == 68) { // Left
+                            choice[selected] = false;
+                        }
+                    }
+                }
+            }
+
+            // Redraw choices
+            std::cout << utils::move_up(choices.size())
+                      << utils::move_left(1000);
+            for (uint i = 0; i < choices.size(); i++) {
+                if (choice[i]) {
+                    std::cout << color::green << "✔ " << color::reset;
+                } else {
+                    std::cout << color::grey << "✔ " << color::reset;
+                }
+                if (i == selected) {
+                    std::cout << color::cyan << color::underline << choices[i] << color::reset << std::endl;
+                } else {
+                    std::cout << choices[i] << std::endl;
+                }
+            }
+        }
+        std::cout << utils::show_cursor();
+        utils::disable_raw_mode();
+
+        // Print resume
+        for (uint i = 0; i < choices.size(); i++) { // Clear choices
+            std::cout << utils::move_up() << utils::clear_line(utils::EOL);
+        }
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::vector<std::string> items;
+        for (uint i = 0; i < choices.size(); i++) {
+            if (choice[i]) {
+                items.push_back(choices[i]);
+            }
+        }
+        for (auto it = items.begin(); it != items.end(); it++) {
+            std::cout << color::cyan << *it << color::reset;
+            if (it + 1 != items.end()) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << std::endl;
+
+        return items;
     }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

@@ -18,6 +18,7 @@ int main() {
                 "input",
                 "invisible",
                 "list",
+                "multiselect",
                 "select",
         });
 
@@ -32,6 +33,21 @@ int main() {
             cout << "'" << answer << "'" << endl;
         } else if (choice == "list") {
             auto answer = enquirer::list("Type comma separated keywords");
+            for (const auto &keyword: answer) {
+                cout << "'" << keyword << "' ";
+            }
+            cout << endl;
+        } else if (choice == "multiselect") {
+            auto answer = enquirer::multi_select("Choose your favorite colors:", {
+                    "red",
+                    "green",
+                    "blue",
+                    "yellow",
+                    "orange",
+                    "purple",
+                    "black",
+                    "white",
+            });
             for (const auto &keyword: answer) {
                 cout << "'" << keyword << "' ";
             }
