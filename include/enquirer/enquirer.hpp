@@ -612,8 +612,53 @@ namespace enquirer {
 
     bool toggle(const std::string &question,
                 const std::string &enable,
-                const std::string &disable) {
-        return false; // TODO
+                const std::string &disable,
+                bool default_value = false) {
+        // Print question
+        utils::print_question(question);
+
+        // Print choices
+        bool toggled = default_value;
+        std::cout << (toggled ? color::cyan + color::underline : "") << enable << color::reset << "/"
+                  << (toggled ? "" : color::cyan + color::underline) << disable << color::reset;
+
+        // Get answer
+        char current;
+        utils::enable_raw_mode();
+        std::cout << utils::hide_cursor();
+        while (std::cin.get(current)) {
+            bool previous = toggled;
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 68) { // Left
+                            toggled = true;
+                        } else if (current == 67) { // Right
+                            toggled = false;
+                        }
+                    }
+                }
+            }
+
+            // Redraw choices
+            std::cout << utils::move_left(enable.length() + disable.length() + 1)
+                      << utils::clear_line(utils::EOL)
+                      << (toggled ? color::cyan + color::underline : "") << enable << color::reset << "/"
+                      << (toggled ? "" : color::cyan + color::underline) << disable << color::reset;
+        }
+        std::cout << utils::show_cursor();
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << (toggled ? color::green : color::red) << (toggled ? enable : disable) << color::reset << std::endl;
+
+        return toggled;
     }
 }
 

@@ -20,6 +20,7 @@ int main() {
                 "list",
                 "multiselect",
                 "select",
+                "toggle"
         });
 
         if (choice == "confirm") {
@@ -55,6 +56,9 @@ int main() {
         } else if (choice == "select") {
             string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
             cout << "'" << answer << "'" << endl;
+        } else if (choice == "toggle") {
+            bool answer = enquirer::toggle("Light?", "On", "Off", true);
+            cout << "Switch " << (answer ? "on" : "off") << " the light" << endl;
         }
     } while (enquirer::confirm("Do you want to test another function?", true));
 

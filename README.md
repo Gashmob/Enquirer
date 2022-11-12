@@ -357,7 +357,8 @@ Choose between two values.
 ```c++
 bool toggle(const std::string &question,
             const std::string &enable,
-            const std::string &disable);
+            const std::string &disable,
+            bool default_value = false);
 ```
 
 **Example**
@@ -384,5 +385,5 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [ ] Quiz
 - [ ] Slider
 - [x] Select
-- [ ] Toggle
+- [x] Toggle
 - [ ] _**Tests**_
