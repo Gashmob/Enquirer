@@ -14,23 +14,30 @@ int main() {
 
     do {
         string choice = enquirer::select("Choose a function to test:", {
+                "confirm",
                 "input",
                 "invisible",
+                "list",
                 "select",
-                "confirm"
         });
 
-        if (choice == "input") {
+        if (choice == "confirm") {
+            bool answer = enquirer::confirm("Do you like this library?", true);
+            cout << "'" << answer << "'" << endl;
+        } else if (choice == "input") {
             string answer = enquirer::input("What is you name?", "John Doe");
             cout << "'" << answer << "'" << endl;
         } else if (choice == "invisible") {
             string answer = enquirer::invisible("What is you secret?");
             cout << "'" << answer << "'" << endl;
+        } else if (choice == "list") {
+            auto answer = enquirer::list("Type comma separated keywords");
+            for (const auto &keyword: answer) {
+                cout << "'" << keyword << "' ";
+            }
+            cout << endl;
         } else if (choice == "select") {
             string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
-            cout << "'" << answer << "'" << endl;
-        } else if (choice == "confirm") {
-            bool answer = enquirer::confirm("Do you like this library?", true);
             cout << "'" << answer << "'" << endl;
         }
     } while (enquirer::confirm("Do you want to test another function?", true));

@@ -15,6 +15,7 @@
 #include <vector>
 #include <unistd.h>
 #include <termios.h>
+#include <sstream>
 
 namespace enquirer {
 
@@ -127,6 +128,37 @@ namespace enquirer {
             tcgetattr(STDIN_FILENO, &term);
             term.c_lflag |= (ECHO | ICANON);
             tcsetattr(STDIN_FILENO, TCSAFLUSH, &term);
+        }
+
+        inline std::string ltrim(const std::string &str) {
+            size_t start = str.find_first_not_of(' ');
+            return (start == std::string::npos) ? "" : str.substr(start);
+        }
+
+        inline std::string rtrim(const std::string &str) {
+            size_t end = str.find_last_not_of(' ');
+            return (end == std::string::npos) ? "" : str.substr(0, end + 1);
+        }
+
+        /**
+         * Trim whitespace from both sides of a string
+         */
+        inline std::string trim(const std::string &str) {
+            return rtrim(ltrim(str));
+        }
+
+        /**
+         * Split a string around a delimiter
+         */
+        inline std::vector<std::string> split(const std::string &str, const char delim) {
+            std::vector<std::string> result;
+            std::stringstream ss(str);
+            std::string item;
+            while (std::getline(ss, item, delim)) {
+                result.push_back(trim(item));
+            }
+
+            return result;
         }
     }
 
@@ -324,7 +356,52 @@ namespace enquirer {
 // List
 
     std::vector<std::string> list(const std::string &question) {
-        return {}; // TODO
+        // Print question
+        utils::print_question(question);
+
+        // Get answer
+        std::string answer;
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    std::cout << std::endl;
+                    break;
+                } else if (current == 127) { // Backspace
+                    if (!answer.empty()) {
+                        answer.pop_back();
+                        std::cout << utils::move_left(1);
+                        std::cout << utils::clear_line(utils::EOL);
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        // Ignore arrow keys
+                    }
+                }
+            } else { // 'Normal' character
+                answer += current;
+                std::cout << current;
+            }
+        }
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_up()
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        auto items = utils::split(answer, ',');
+        for (auto it = items.begin(); it != items.end(); it++) {
+            std::cout << color::cyan << *it << color::reset;
+            if (it + 1 != items.end()) {
+                std::cout << ", ";
+            }
+        }
+        std::cout << std::endl;
+
+        return items;
     }
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
