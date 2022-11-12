@@ -374,15 +374,15 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 
 - [ ] Auth
 - [ ] Autocomplete
-- [ ] Confirm
+- [x] Confirm
 - [ ] Form
-- [ ] Input
-- [ ] Invisible
-- [ ] List
-- [ ] MultiSelect
+- [x] Input
+- [x] Invisible
+- [x] List
+- [x] MultiSelect
 - [ ] Number
 - [ ] Quiz
 - [ ] Slider
-- [ ] Select
+- [x] Select
 - [ ] Toggle
 - [ ] _**Tests**_
