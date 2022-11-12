@@ -23,6 +23,18 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
 
 This library is a header only, so you can just add the header (`include/enquirer/enquirer.hpp`) in your project.
 
+For example if you use a `CMakeLists.txt`, copy `include` dir in your project and add this to your `CMakeLists.txt`:
+
+```cmake
+add_executable(<target>
+        ...
+        include/enquirer/enquirer.hpp)
+
+target_include_directories(<target> PUBLIC include)
+```
+
+So now, you can just add `#include <enquirer/enquirer.hpp>` in your source files.
+
 ## Usage
 
 Please note :
