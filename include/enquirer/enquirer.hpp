@@ -387,7 +387,10 @@ namespace enquirer {
         utils::disable_raw_mode();
 
         // Print resume
-        std::cout << utils::move_up(choices.size() + 1)
+        for (uint i = 0; i < choices.size(); i++) { // Clear choices
+            std::cout << utils::move_up() << utils::clear_line(utils::EOL);
+        }
+        std::cout << utils::move_up()
                   << utils::move_left(1000);
         utils::print_answer(question);
         std::cout << choices[choice] << std::endl;
