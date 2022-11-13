@@ -3,7 +3,7 @@ project(Enquirer)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Enquirer
-        tests/main.cpp
+add_executable(demo
+        tests/demo.cpp
         include/enquirer/enquirer.hpp)
-target_include_directories(Enquirer PUBLIC include/enquirer)
+target_include_directories(demo PUBLIC include/enquirer)
