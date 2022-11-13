@@ -22,6 +22,7 @@ int main() {
                 "number",
                 "password",
                 "quiz",
+                "slider",
                 "select",
                 "toggle"
         });
@@ -65,6 +66,9 @@ int main() {
         } else if (choice == "quiz") {
             bool answer = enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana");
             cout << "'" << answer << "'" << endl;
+        } else if (choice == "slider") {
+            auto n = enquirer::slider<int>("Choose a number between 1 and 10", 1, 10, 1, 5);
+            cout << "'" << n << "'" << endl;
         } else if (choice == "select") {
             string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
             cout << "'" << answer << "'" << endl;

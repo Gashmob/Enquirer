@@ -16,6 +16,8 @@
 #include <unistd.h>
 #include <termios.h>
 #include <sstream>
+#include <sys/ioctl.h>
+#include <math.h>
 
 namespace enquirer {
 
@@ -117,14 +119,14 @@ namespace enquirer {
         }
 
         inline void enable_raw_mode() {
-            struct termios term;
+            struct termios term{};
             tcgetattr(STDIN_FILENO, &term);
             term.c_lflag &= ~(ECHO | ICANON);
             tcsetattr(STDIN_FILENO, TCSAFLUSH, &term);
         }
 
         inline void disable_raw_mode() {
-            struct termios term;
+            struct termios term{};
             tcgetattr(STDIN_FILENO, &term);
             term.c_lflag |= (ECHO | ICANON);
             tcsetattr(STDIN_FILENO, TCSAFLUSH, &term);
@@ -673,13 +675,96 @@ namespace enquirer {
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
     // Slider
 
-    template<typename N>
-    typename std::enable_if<std::is_arithmetic<N>::value>::type slider(const std::string &question,
-                                                                       N min_value,
-                                                                       N max_value,
-                                                                       N step,
-                                                                       N initial_value) {
-        return 0; // TODO
+    template<typename N,
+            typename = typename std::enable_if<std::is_arithmetic<N>::value>::type>
+    N slider(const std::string &question,
+             N min_value,
+             N max_value,
+             N step,
+             N initial_value) {
+        // Print question
+        utils::print_question(question);
+
+        struct winsize w{};
+        ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+        const uint width = std::min((int) ((max_value - min_value) / step),
+                                    (int) w.ws_col - 7); // 7 is for < > # and 2 spaces each side
+        const N swidth = (max_value - min_value) / width;
+
+        // Print value
+        N value = initial_value;
+        std::cout << std::endl << "   "
+                  << std::string((width / 2) - (std::to_string(value).length() / 2), ' ')
+                  << color::bold << value << color::reset
+                  << std::endl;
+
+        // Print slider
+        std::cout << "  "
+                  << color::cyan << color::bold << "<" << color::reset;
+        for (uint i = 0; i <= width; i++) {
+            N l = min_value + (i * swidth);
+            N r = min_value + ((i + 1) * swidth);
+            if (value >= l && value < r) {
+                std::cout << color::cyan << color::bold << "#" << color::reset;
+            } else {
+                std::cout << color::grey << "-" << color::reset;
+            }
+        }
+        std::cout << color::cyan << color::bold << ">" << color::reset;
+
+        // Get answer
+        char current;
+        utils::enable_raw_mode();
+        std::cout << utils::hide_cursor();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 67) { // Right
+                            value = std::min(value + step, max_value);
+                        } else if (current == 68) { // Left
+                            value = std::max(value - step, min_value);
+                        }
+                    }
+                }
+            }
+
+            // Redraw slider
+            std::cout << utils::clear_line(utils::LINE)
+                      << utils::move_up() << utils::clear_line(utils::LINE)
+                      << utils::move_left(1000);
+            std::cout << "   "
+                      << std::string((width / 2) - (std::to_string(value).length() / 2), ' ')
+                      << color::bold << value << color::reset << std::endl;
+            std::cout << "  "
+                      << color::cyan << color::bold << "<" << color::reset;
+            for (uint i = 0; i <= width; i++) {
+                N l = min_value + (i * swidth);
+                N r = min_value + ((i + 1) * swidth);
+                if (value >= l && value < r) {
+                    std::cout << color::cyan << color::bold << "#" << color::reset;
+                } else {
+                    std::cout << color::grey << "-" << color::reset;
+                }
+            }
+            std::cout << color::cyan << color::bold << ">" << color::reset;
+        }
+        std::cout << utils::show_cursor();
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::clear_line(utils::LINE)
+                  << utils::move_up() << utils::clear_line(utils::LINE)
+                  << utils::move_up() << utils::clear_line(utils::LINE)
+                  << utils::move_left(1000);
+        utils::print_answer(question);
+        std::cout << color::cyan << value << color::reset << std::endl;
+
+        return value;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
@@ -771,7 +856,6 @@ namespace enquirer {
         utils::enable_raw_mode();
         std::cout << utils::hide_cursor();
         while (std::cin.get(current)) {
-            bool previous = toggled;
             if (iscntrl(current)) {
                 if (current == 10) { // Enter
                     break;

@@ -249,8 +249,9 @@ Ask the user for a number
 **Prototype**
 
 ```c++
-template<typename N>
-typename std::enable_if<std::is_arithmetic<N>::value>::type number(const std::string &question);
+template<typename N,
+        typename = typename std::enable_if<std::is_arithmetic<N>::value>::type>
+N number(const std::string &question);
 ```
 
 **Example**
@@ -317,18 +318,19 @@ Allow user to choose a value in a range.
 **Prototype**
 
 ```c++
-template<typename N>
-typename std::enable_if<std::is_arithmetic<N>::value>::type slider(const std::string &question,
-                                                                   N min_value,
-                                                                   N max_value,
-                                                                   N step,
-                                                                   N initial_value);
+template<typename N,
+        typename = typename std::enable_if<std::is_arithmetic<N>::value>::type>
+N slider(const std::string &question,
+         N min_value,
+         N max_value,
+         N step,
+         N initial_value);
 ```
 
 **Example**
 
 ```c++
-int value = enquirer::slider("How much do you want?", 0, 10, 1, 1);
+int value = enquirer::slider<int>("How much do you want?", 0, 10, 1, 1);
 ```
 
 **Result**
@@ -396,7 +398,7 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [x] Number
 - [x] Password
 - [x] Quiz
-- [ ] Slider
+- [x] Slider
 - [x] Select
 - [x] Toggle
 - [ ] _**Tests**_
