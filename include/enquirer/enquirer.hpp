@@ -257,10 +257,10 @@ namespace enquirer {
                     std::cin.get(current);
                     if (current == 91) {
                         std::cin.get(current);
-                        if (current == 65 && choice > 0) { // Up
-                            choice--;
-                        } else if (current == 66 && choice < (std::min(limit, (uint) current_choices.size()))) { // Down
-                            choice++;
+                        if (current == 65) { // Up
+                            choice = (choice == 0) ? (int) current_choices.size() - 1 : choice - 1;
+                        } else if (current == 66) { // Down
+                            choice = (choice == std::min(limit, (uint) current_choices.size()) - 1) ? 0 : choice + 1;
                         }
                     }
                 }
@@ -421,10 +421,10 @@ namespace enquirer {
                     std::cin.get(current);
                     if (current == 91) {
                         std::cin.get(current);
-                        if (current == 65 && line > 0) { // Up
-                            line--;
-                        } else if (current == 66 && line < inputs.size() - 1) { // Down
-                            line++;
+                        if (current == 65) { // Up
+                            line = (line == 0) ? inputs.size() - 1 : line - 1;
+                        } else if (current == 66) { // Down
+                            line = (line == inputs.size() - 1) ? 0 : line + 1;
                         }
                     }
                 }
