@@ -14,6 +14,7 @@ int main() {
 
     do {
         string choice = enquirer::select("Choose a function to test:", {
+                "autocomplete",
                 "confirm",
                 "input",
                 "invisible",
@@ -27,7 +28,19 @@ int main() {
                 "toggle"
         });
 
-        if (choice == "confirm") {
+        if (choice == "autocomplete") {
+            string answer = enquirer::autocomplete("What is you favorite fruit", {
+                    "Apple",
+                    "Banana",
+                    "Blueberry",
+                    "Cherry",
+                    "Orange",
+                    "Pear",
+                    "Raspberry",
+                    "Strawberry"
+            });
+            cout << "'" << answer << "'" << endl;
+        } else if (choice == "confirm") {
             bool answer = enquirer::confirm("Do you like this library?", true);
             cout << "'" << answer << "'" << endl;
         } else if (choice == "input") {

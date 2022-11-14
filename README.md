@@ -388,7 +388,7 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 ## TODO
 
 - [ ] Auth
-- [ ] Autocomplete
+- [x] Autocomplete
 - [x] Confirm
 - [ ] Form
 - [x] Input

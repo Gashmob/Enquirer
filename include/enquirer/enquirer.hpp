@@ -162,6 +162,29 @@ namespace enquirer {
 
             return result;
         }
+
+        /**
+         * Return src filtered by the predicate
+         */
+        inline std::vector<std::string> filter(const std::vector<std::string> &src,
+                                               const std::function<bool(const std::string &)> &predicate) {
+            std::vector<std::string> result;
+
+            for (const auto &item: src) {
+                if (predicate(item)) {
+                    result.push_back(item);
+                }
+            }
+
+            return result;
+        }
+
+        /**
+         * Check if src begin with prefix
+         */
+        inline bool beginWith(const std::string &src, const std::string &prefix) {
+            return src.find(prefix) == 0;
+        }
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
@@ -182,9 +205,91 @@ namespace enquirer {
     // Autocomplete
 
     std::string autocomplete(const std::string &question,
-                             const std::string choices[] = {},
-                             int limit = 10) {
-        return ""; // TODO
+                             const std::vector<std::string> &choices = {},
+                             uint limit = 10) {
+        // Print question
+        utils::print_question(question);
+
+        std::vector<std::string> current_choices;
+        int choice = -1;
+
+        // Get answer
+        std::string answer;
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    break;
+                } else if (current == 127) { // Backspace
+                    if (!answer.empty()) {
+                        answer.pop_back();
+                    }
+                } else if (current == 9 && choice != -1) { // Tab
+                    if (answer == current_choices[choice].substr(0, answer.length())) {
+                        answer = std::string(current_choices[choice]);
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 65 && choice > 0) { // Up
+                            choice--;
+                        } else if (current == 66 && choice < (std::min(limit, (uint) current_choices.size()))) { // Down
+                            choice++;
+                        }
+                    }
+                }
+            } else { // 'Normal' character
+                answer += current;
+            }
+
+            // Erase previous choices
+            std::cout << utils::move_down(std::min(limit, (uint) current_choices.size()) + 1)
+                      << utils::move_left(1000);
+            for (uint i = 0; i < current_choices.size() && i < limit; i++) {
+                std::cout << utils::clear_line(utils::EOL)
+                          << utils::move_up();
+            }
+            std::cout << utils::move_up();
+            // Draw completion
+            current_choices = utils::filter(choices, [=](const std::string &item) {
+                return utils::beginWith(item, answer);
+            });
+            choice = std::max(0, std::min(choice, (int) current_choices.size() - 1));
+            std::cout << utils::move_left(1000) << utils::clear_line(utils::LINE);
+            utils::print_question(question);
+            std::cout << answer;
+            if (!current_choices.empty()) {
+                std::cout << color::grey << current_choices[choice].substr(answer.length()) << color::reset;
+            }
+            std::cout << std::endl;
+            for (uint i = 0; i < current_choices.size() && i < limit; i++) {
+                std::cout << utils::clear_line(utils::EOL);
+                if (i == choice) {
+                    std::cout << color::cyan << color::underline << current_choices[i] << color::reset << std::endl;
+                } else {
+                    std::cout << current_choices[i] << std::endl;
+                }
+            }
+            std::cout << utils::move_up(std::min(limit, (uint) current_choices.size()) + 1)
+                      << utils::move_left(1000) << utils::move_right(question.length() + answer.length() + 5);
+        }
+        utils::disable_raw_mode();
+
+        // Print resume
+        std::cout << utils::move_down(std::min(limit, (uint) current_choices.size()) + 1)
+                  << utils::move_left(1000);
+        for (uint i = 0; i < current_choices.size() && i < limit; i++) {
+            std::cout << utils::clear_line(utils::EOL)
+                      << utils::move_up();
+        }
+        std::cout << utils::move_up()
+                  << utils::move_left(1000) << utils::clear_line(utils::LINE);
+        utils::print_answer(question);
+        std::cout << color::cyan << answer << color::reset << std::endl;
+
+        return answer;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
