@@ -541,16 +541,16 @@ namespace enquirer {
         }
 
         // Print resume
-        std::cout << utils::move_down(inputs.size() - line)
-                  << utils::move_left(1000);
-        for (uint i = 0; i < inputs.size(); i++) {
-            std::cout << utils::clear_line(utils::EOL)
-                      << utils::move_up();
-        }
-        std::cout << utils::move_up()
+        std::cout << utils::move_left(1000) << (line == 0 ? "" : utils::move_up(line))
+                  << utils::move_up()
                   << utils::clear_line(utils::EOL);
         utils::print_answer(question);
         std::cout << std::endl;
+        for (const auto &input: inputs) {
+            std::cout << utils::clear_line(utils::EOL);
+            utils::print_question(utils::lfill(input, width), color::green + "⦿ ");
+            std::cout << answers[input] << std::endl;
+        }
 
         return answers;
     }
