@@ -138,7 +138,7 @@ Multi-prompt for user
 
 ```c++
 std::map<std::string, std::string> form(const std::string &question,
-                                        const std::string inputs[]);
+                                        const std::vector<std::string> &inputs);
 ```
 
 **Example**
@@ -390,7 +390,7 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [ ] Auth
 - [x] Autocomplete
 - [x] Confirm
-- [ ] Form
+- [x] Form
 - [x] Input
 - [x] Invisible
 - [x] List

@@ -17,7 +17,8 @@
 #include <termios.h>
 #include <sstream>
 #include <sys/ioctl.h>
-#include <math.h>
+#include <cmath>
+#include <algorithm>
 
 namespace enquirer {
 
@@ -185,6 +186,29 @@ namespace enquirer {
         inline bool begin_with(const std::string &src, const std::string &prefix) {
             return src.find(prefix) == 0;
         }
+
+        /**
+         * Complete src with fill until it reaches the length
+         */
+        inline std::string lfill(const std::string &src, const size_t width, const char fill = ' ') {
+            if (src.length() >= width) {
+                return src;
+            }
+
+            return std::string(width - src.length(), fill) + src;
+        }
+
+        /**
+         * Returns the size of longest string in the vector
+         */
+        inline uint max_size(const std::vector<std::string> &strs) {
+            uint max = 0;
+            for (const auto &str: strs)
+                if (str.length() > max)
+                    max = str.length();
+
+            return max;
+        }
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
@@ -346,8 +370,99 @@ namespace enquirer {
     // Form
 
     std::map<std::string, std::string> form(const std::string &question,
-                                            const std::string inputs[]) {
-        return {}; // TODO
+                                            const std::vector<std::string> &inputs) {
+        if (inputs.empty()) {
+            return {};
+        }
+
+        // Print question
+        utils::print_question(question);
+        std::cout << std::endl;
+
+        // Print inputs
+        uint width = utils::max_size(inputs);
+        uint line = 0;
+        std::map<std::string, std::string> answers;
+        for (uint i = 0; i < inputs.size(); i++) {
+            answers[inputs[i]] = "";
+            if (i == line) {
+                utils::print_question(color::cyan + utils::lfill(inputs[i], width), color::grey + "⊙ ");
+            } else {
+                utils::print_question(utils::lfill(inputs[i], width), color::grey + "⊙ ");
+            }
+            std::cout << std::endl;
+        }
+        std::cout << utils::move_up(inputs.size()) << utils::move_right(width + 5);
+
+        // Get answers
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            uint previous = line;
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    if (std::all_of(answers.begin(), answers.end(),
+                                    [](const std::pair<std::string, std::string> &item) {
+                                        return !item.second.empty();
+                                    })) {
+                        break;
+                    } else {
+                        line = std::distance(answers.begin(),
+                                             std::find_if(answers.begin(), answers.end(),
+                                                          [](const std::pair<std::string, std::string> &item) {
+                                                              return item.second.empty();
+                                                          }));
+                    }
+                } else if (current == 127) { // Backspace
+                    if (!answers[inputs[line]].empty()) {
+                        answers[inputs[line]].pop_back();
+                    }
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 65 && line > 0) { // Up
+                            line--;
+                        } else if (current == 66 && line < inputs.size() - 1) { // Down
+                            line++;
+                        }
+                    }
+                }
+            } else { // 'Normal' character
+                answers[inputs[line]] += current;
+            }
+
+            // Redraw inputs
+            std::cout << utils::move_left(1000) << (previous == 0 ? "" : utils::move_up(previous));
+            for (uint i = 0; i < inputs.size(); i++) {
+                std::cout << utils::clear_line(utils::EOL);
+                std::string indicator = (answers[inputs[i]].empty() ?
+                                         color::grey + "⊙ " :
+                                         color::green + "⦿ ");
+                if (i == line) {
+                    utils::print_question(color::cyan + utils::lfill(inputs[i], width), indicator);
+                } else {
+                    utils::print_question(utils::lfill(inputs[i], width), indicator);
+                }
+                std::cout << answers[inputs[i]] << std::endl;
+            }
+            std::cout << utils::move_up(inputs.size() - line)
+                      << utils::move_right(width + 5 + answers[inputs[line]].length());
+        }
+
+        // Print resume
+        std::cout << utils::move_down(inputs.size() - line)
+                  << utils::move_left(1000);
+        for (uint i = 0; i < inputs.size(); i++) {
+            std::cout << utils::clear_line(utils::EOL)
+                      << utils::move_up();
+        }
+        std::cout << utils::move_up()
+                  << utils::clear_line(utils::EOL);
+        utils::print_answer(question);
+        std::cout << std::endl;
+
+        return answers;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

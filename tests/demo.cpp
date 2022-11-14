@@ -16,6 +16,7 @@ int main() {
         string choice = enquirer::select("Choose a function to test:", {
                 "autocomplete",
                 "confirm",
+                "form",
                 "input",
                 "invisible",
                 "list",
@@ -43,6 +44,12 @@ int main() {
         } else if (choice == "confirm") {
             bool answer = enquirer::confirm("Do you like this library?", true);
             cout << "'" << answer << "'" << endl;
+        } else if (choice == "form") {
+            auto answers = enquirer::form("Please provide some informations:", {
+                    "Firstname",
+                    "Lastname",
+                    "Username"
+            });
         } else if (choice == "input") {
             string answer = enquirer::input("What is you name?", "John Doe");
             cout << "'" << answer << "'" << endl;
