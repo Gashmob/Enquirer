@@ -55,11 +55,13 @@ There is 2 prototypes :
 
 ```c++
 std::pair<std::string, std::string> auth(const std::string &id_prompt = "Username",
-                                         const std::string &pw_prompt = "Password");
+                                         const std::string &pw_prompt = "Password",
+                                         char mask = '*');
 
-bool auth(std::function<bool(std::pair<std::string, std::string>)> &predicate,
+bool auth(const std::function<bool(const std::pair<std::string, std::string> &)> &predicate,
           const std::string &id_prompt = "Username",
-          const std::string &pw_prompt = "Password");
+          const std::string &pw_prompt = "Password",
+          char mask = '*');
 ```
 
 **Example**
@@ -402,5 +404,6 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 - [x] Select
 - [x] Toggle
 - [ ] _**Tests**_
+- [ ] Pour slider, revoir comment faire la barre correctement
 
 Pour les tests, rediriger cin et cout sur des stringstream pour contrôler l'entrée-sortie.

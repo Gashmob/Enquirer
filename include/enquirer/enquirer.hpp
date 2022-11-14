@@ -215,14 +215,104 @@ namespace enquirer {
     // Auth
 
     std::pair<std::string, std::string> auth(const std::string &id_prompt = "Username",
-                                             const std::string &pw_prompt = "Password") {
-        return {}; // TODO
+                                             const std::string &pw_prompt = "Password",
+                                             char mask = '*') {
+        // Print inputs
+        std::vector<std::string> inputs = {id_prompt, pw_prompt};
+        uint width = std::max(id_prompt.length(), pw_prompt.length());
+        uint line = 0;
+        std::pair<std::string, std::string> answers = std::make_pair("", "");
+        utils::print_question(color::cyan + utils::lfill(id_prompt, width), color::grey + "⊙ ");
+        std::cout << std::endl;
+        utils::print_question(utils::lfill(pw_prompt, width), color::grey + "⊙ ");
+        std::cout << std::endl;
+        std::cout << utils::move_up(2) << utils::move_right(width + 5);
+
+        // Get answers
+        char current;
+        utils::enable_raw_mode();
+        while (std::cin.get(current)) {
+            uint previous = line;
+            if (iscntrl(current)) {
+                if (current == 10) { // Enter
+                    if (!answers.first.empty() && !answers.second.empty()) {
+                        break;
+                    } else {
+                        line = answers.first.empty() ? 0 : 1;
+                    }
+                } else if (current == 127) { // Backspace
+                    if (line == 0 && !answers.first.empty())
+                        answers.first.pop_back();
+                    else if (line == 1 && !answers.second.empty())
+                        answers.second.pop_back();
+
+                } else if (current == 27) { // Escape
+                    std::cin.get(current);
+                    if (current == 91) {
+                        std::cin.get(current);
+                        if (current == 65) { // Up
+                            line = (line == 0) ? 1 : 0;
+                        } else if (current == 66) { // Down
+                            line = (line == 1) ? 0 : 1;
+                        }
+                    }
+                }
+            } else { // 'Normal' character
+                if (line == 0)
+                    answers.first += current;
+                else
+                    answers.second += current;
+
+            }
+
+            // Redraw inputs
+            std::cout << utils::move_left(1000) << (previous == 0 ? "" : utils::move_up());
+            std::cout << utils::clear_line(utils::EOL);
+            if (line == 0) {
+                utils::print_question(color::cyan + utils::lfill(id_prompt, width), (answers.first.empty() ?
+                                                                                     color::grey + "⊙ " :
+                                                                                     color::green + "⦿ "));
+                std::cout << answers.first << std::endl;
+                utils::print_question(utils::lfill(pw_prompt, width), (answers.second.empty() ?
+                                                                       color::grey + "⊙ " :
+                                                                       color::green + "⦿ "));
+                std::cout << std::string(answers.second.length(), '*') << std::endl;
+            } else {
+                utils::print_question(utils::lfill(id_prompt, width), (answers.first.empty() ?
+                                                                       color::grey + "⊙ " :
+                                                                       color::green + "⦿ "));
+                std::cout << answers.first << std::endl;
+                utils::print_question(color::cyan + utils::lfill(pw_prompt, width), (answers.second.empty() ?
+                                                                                     color::grey + "⊙ " :
+                                                                                     color::green + "⦿ "));
+                std::cout << std::string(answers.second.length(), '*') << std::endl;
+            }
+            std::cout << utils::move_up(inputs.size() - line)
+                      << utils::move_right(width + 5 + (line == 0 ?
+                                                        answers.first.length() :
+                                                        answers.second.length()));
+        }
+
+        // Print resume
+        std::cout << utils::move_left(1000) << (line == 0 ? "" : utils::move_up());
+        std::cout << utils::clear_line(utils::EOL);
+        utils::print_question(utils::lfill(id_prompt, width), (answers.first.empty() ?
+                                                               color::grey + "⊙ " :
+                                                               color::green + "⦿ "));
+        std::cout << answers.first << std::endl;
+        utils::print_question(utils::lfill(pw_prompt, width), (answers.second.empty() ?
+                                                               color::grey + "⊙ " :
+                                                               color::green + "⦿ "));
+        std::cout << std::string(answers.second.length(), '*') << std::endl;
+
+        return {answers.first, answers.second};
     }
 
-    bool auth(std::function<bool(std::pair<std::string, std::string>)> &predicate,
+    bool auth(const std::function<bool(const std::pair<std::string, std::string> &)> &predicate,
               const std::string &id_prompt = "Username",
-              const std::string &pw_prompt = "Password") {
-        return false; // TODO
+              const std::string &pw_prompt = "Password",
+              char mask = '*') {
+        return predicate(auth(id_prompt, pw_prompt, mask));
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.

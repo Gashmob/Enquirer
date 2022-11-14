@@ -14,6 +14,7 @@ int main() {
 
     do {
         string choice = enquirer::select("Choose a function to test:", {
+                "auth",
                 "autocomplete",
                 "confirm",
                 "form",
@@ -29,7 +30,12 @@ int main() {
                 "toggle"
         });
 
-        if (choice == "autocomplete") {
+        if (choice == "auth") {
+            bool authed = enquirer::auth([](const pair<string, string> &crd) {
+                return crd.first == "admin" && crd.second == "admin";
+            });
+            cout << "'" << authed << "'" << endl;
+        } else if (choice == "autocomplete") {
             string answer = enquirer::autocomplete("What is you favorite fruit", {
                     "Apple",
                     "Banana",
