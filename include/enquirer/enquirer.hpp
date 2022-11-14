@@ -182,7 +182,7 @@ namespace enquirer {
         /**
          * Check if src begin with prefix
          */
-        inline bool beginWith(const std::string &src, const std::string &prefix) {
+        inline bool begin_with(const std::string &src, const std::string &prefix) {
             return src.find(prefix) == 0;
         }
     }
@@ -254,7 +254,7 @@ namespace enquirer {
             std::cout << utils::move_up();
             // Draw completion
             current_choices = utils::filter(choices, [=](const std::string &item) {
-                return utils::beginWith(item, answer);
+                return utils::begin_with(item, answer);
             });
             choice = std::max(0, std::min(choice, (int) current_choices.size() - 1));
             std::cout << utils::move_left(1000) << utils::clear_line(utils::LINE);
