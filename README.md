@@ -389,20 +389,6 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 
 ## TODO
 
-- [x] Auth
-- [x] Autocomplete
-- [x] Confirm
-- [x] Form
-- [x] Input
-- [x] Invisible
-- [x] List
-- [x] MultiSelect
-- [x] Number
-- [x] Password
-- [x] Quiz
-- [x] Slider
-- [x] Select
-- [x] Toggle
 - [ ] _**Tests**_
 - [ ] Pour slider, revoir comment faire la barre correctement
 
