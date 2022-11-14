@@ -997,9 +997,9 @@ namespace enquirer {
 
         struct winsize w{};
         ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-        const uint width = std::min((int) ((max_value - min_value) / step),
-                                    (int) w.ws_col - 7); // 7 is for < > # and 2 spaces each side
-        const N swidth = (max_value - min_value) / width;
+        const uint width = std::min((uint) ((max_value - min_value) / step),
+                                    (uint) w.ws_col - 7); // 7 is for < > # and 2 spaces each side
+        const N swidth = (max_value - min_value) / ((N) width);
 
         // Print value
         N value = initial_value;
@@ -1009,9 +1009,8 @@ namespace enquirer {
                   << std::endl;
 
         // Print slider
-        std::cout << "  "
-                  << color::cyan << color::bold << "<" << color::reset;
-        for (uint i = 0; i <= width; i++) {
+        std::cout << "  " << color::cyan << color::bold << "<" << color::reset;
+        for (N i = 0; i <= width; i++) {
             N l = min_value + (i * swidth);
             N r = min_value + ((i + 1) * swidth);
             if (value >= l && value < r) {

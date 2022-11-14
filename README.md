@@ -390,6 +390,5 @@ bool quit = !enquirer::toggle("Continue?", "Yes", "No");
 ## TODO
 
 - [ ] _**Tests**_
-- [ ] Pour slider, revoir comment faire la barre correctement
 
 Pour les tests, rediriger cin et cout sur des stringstream pour contrôler l'entrée-sortie.
