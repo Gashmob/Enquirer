@@ -10,7 +10,7 @@
 using namespace std;
 
 int main() {
-    cout << "Test Enquirer included version " << ENQUIRER_VERSION << endl;
+    cout << "Enquirer demo, version " << ENQUIRER_VERSION << endl;
 
     do {
         string choice = enquirer::select("Choose a function to test:", {
