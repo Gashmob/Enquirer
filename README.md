@@ -67,9 +67,9 @@ bool auth(const std::function<bool(const std::pair<std::string, std::string> &)>
 **Example**
 
 ```c++
-bool is_valid = enquirer::auth([](std::pair<std::string, std::string> credentials) {
+bool is_valid = enquirer::auth([](const std::pair<std::string, std::string> &credentials) {
     return credentials.first == "admin"
-        && credentials.second == "admin";
+           && credentials.second == "admin";
 });
 ```
 
@@ -146,10 +146,10 @@ std::map<std::string, std::string> form(const std::string &question,
 **Example**
 
 ```c++
-auto result = enquirer::form("Please provide some informations:", {
-    "firstname",
-    "lastname",
-    "username"
+auto answers = enquirer::form("Please provide some informations:", {
+        "Firstname",
+        "Lastname",
+        "Username"
 });
 ```
 
@@ -207,7 +207,7 @@ std::vector<std::string> list(const std::string &question);
 **Example**
 
 ```c++
-auto keywords = enquirer:list("Type comma separated keywords")
+auto keywords = enquirer::list("Type comma separated keywords");
 ```
 
 **Result**
@@ -259,7 +259,7 @@ N number(const std::string &question);
 **Example**
 
 ```c++
-double pi = enquirer::number<double>("What is the value of PI?");
+auto pi = enquirer::number<double>("What is the value of PI?");
 ```
 
 **Result**
@@ -302,8 +302,7 @@ bool quiz(const std::string &question,
 **Example**
 
 ```c++
-auto choices = {"Banana", "Coconut", "Strawberry"};
-if (enquirer::quiz("Which is yellow?", choices, "Banana"))
+if (enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana"))
     std::cout << "Good answer!" << std::endl;
 else
     std::cout << "Bad answer!" << std::endl;
@@ -353,10 +352,10 @@ std::string select(const std::string &question,
 **Example**
 
 ```c++
-auto choice = enquirer::select("Which is the best one?", {
-    "c++",
-    "python",
-    "java"
+auto language = enquirer::select("Which is the best one?", {
+        "c++",
+        "python",
+        "java"
 });
 ```
 
@@ -380,7 +379,7 @@ bool toggle(const std::string &question,
 **Example**
 
 ```c++
-bool quit = !enquirer::toggle("Continue?", "Yes", "No");
+bool light = enquirer::toggle("Light?", "On", "Off", true);
 ```
 
 **Result**

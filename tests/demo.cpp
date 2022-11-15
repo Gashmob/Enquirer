@@ -31,10 +31,15 @@ int main() {
         });
 
         if (choice == "auth") {
-            bool authed = enquirer::auth([](const pair<string, string> &crd) {
-                return crd.first == "admin" && crd.second == "admin";
+            bool is_valid = enquirer::auth([](const std::pair<std::string, std::string> &credentials) {
+                return credentials.first == "admin"
+                       && credentials.second == "admin";
             });
-            cout << "'" << authed << "'" << endl;
+            if (is_valid) {
+                cout << "You are successfully authenticated!" << endl;
+            } else {
+                cout << "Invalid credentials!" << endl;
+            }
         } else if (choice == "autocomplete") {
             string answer = enquirer::autocomplete("What is you favorite fruit", {
                     "Apple",
@@ -46,61 +51,76 @@ int main() {
                     "Raspberry",
                     "Strawberry"
             });
-            cout << "'" << answer << "'" << endl;
+            cout << "Your favorite fruit is " << answer << endl;
         } else if (choice == "confirm") {
-            bool answer = enquirer::confirm("Do you like this library?", true);
-            cout << "'" << answer << "'" << endl;
+            bool quit = false;
+            while (!quit) {
+                quit = enquirer::confirm("Do you want to quit?");
+            }
         } else if (choice == "form") {
             auto answers = enquirer::form("Please provide some informations:", {
                     "Firstname",
                     "Lastname",
                     "Username"
             });
+            cout << "Hi " << answers["Firstname"] << " " << answers["Lastname"] << ", also called "
+                 << answers["Username"] << "!" << endl;
         } else if (choice == "input") {
-            string answer = enquirer::input("What is you name?", "John Doe");
-            cout << "'" << answer << "'" << endl;
+            string answer = enquirer::input("What is your name?", "John Doe");
+            cout << "Hi " << answer << "!" << endl;
         } else if (choice == "invisible") {
-            string answer = enquirer::invisible("What is you secret?");
-            cout << "'" << answer << "'" << endl;
+            string secret = enquirer::invisible("What is your secret?");
+            cout << "Sorry, but I can't keep secrets! " << secret << endl;
         } else if (choice == "list") {
-            auto answer = enquirer::list("Type comma separated keywords");
-            for (const auto &keyword: answer) {
+            auto keywords = enquirer::list("Type comma separated keywords");
+            cout << "You typed " << keywords.size() << " keywords:" << endl;
+            for (const auto &keyword: keywords) {
                 cout << "'" << keyword << "' ";
             }
             cout << endl;
         } else if (choice == "multiselect") {
-            auto answer = enquirer::multi_select("Choose your favorite colors:", {
-                    "red",
-                    "green",
-                    "blue",
-                    "yellow",
-                    "orange",
-                    "purple",
-                    "black",
-                    "white",
+            auto choices = enquirer::multi_select("Choose some colors", {
+                    "Red",
+                    "Green",
+                    "Blue",
+                    "Yellow",
+                    "Magenta",
+                    "Cyan",
+                    "White",
+                    "Black"
             });
-            for (const auto &keyword: answer) {
-                cout << "'" << keyword << "' ";
+            cout << "You chose " << choices.size() << " colors:" << endl;
+            for (const auto &c: choices) {
+                cout << "'" << c << "' ";
             }
             cout << endl;
         } else if (choice == "number") {
-            auto n = enquirer::number<float>("Enter a number");
-            cout << "'" << n << "'" << endl;
+            auto pi = enquirer::number<double>("What is the value of PI?");
+            cout << "For you PI is " << pi << endl;
         } else if (choice == "password") {
-            string pwd = enquirer::password("Enter your password");
-            cout << "'" << pwd << "'" << endl;
+            auto pwd = enquirer::password("What is your password?");
+            cout << "Your password count " << pwd.size() << " characters" << endl;
         } else if (choice == "quiz") {
-            bool answer = enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana");
-            cout << "'" << answer << "'" << endl;
+            if (enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana"))
+                cout << "Good answer!" << endl;
+            else
+                cout << "Bad answer!" << endl;
         } else if (choice == "slider") {
-            auto n = enquirer::slider<int>("Choose a number between 1 and 1000", 1, 1000, 1, 500);
-            cout << "'" << n << "'" << endl;
+            int value = enquirer::slider<int>("How much do you want?", 0, 10, 1, 1);
+            cout << "You want " << value << " potatoes" << endl;
         } else if (choice == "select") {
-            string answer = enquirer::select("What is your favorite color?", {"Red", "Green", "Blue"});
-            cout << "'" << answer << "'" << endl;
+            auto language = enquirer::select("Which is the best one?", {
+                    "c++",
+                    "python",
+                    "java"
+            });
+            if (language == "c++")
+                cout << "You are right!" << endl;
+            else
+                cout << "It's your choice, but I prefer c++" << endl;
         } else if (choice == "toggle") {
-            bool answer = enquirer::toggle("Light?", "On", "Off", true);
-            cout << "Switch " << (answer ? "on" : "off") << " the light" << endl;
+            bool light = enquirer::toggle("Light?", "On", "Off", true);
+            cout << "Switch " << (light ? "on" : "off") << " the light" << endl;
         }
     } while (enquirer::confirm("Do you want to test another function?", true));
 
