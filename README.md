@@ -2,6 +2,10 @@
 
 A collection of function to make an interactive CLI. Inspired by [Enquirer.js](https://www.npmjs.com/package/enquirer).
 
+**Full demo**
+
+![Full demo](medias/full_demo.gif)
+
 - [Installation](#installation)
 - [Usage](#usage)
     - [Auth](#auth)
@@ -13,11 +17,14 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
     - [List](#list)
     - [MultiSelect](#multiselect)
     - [Number](#number)
+    - [Password](#password)
     - [Quiz](#quiz)
     - [Slider](#slider)
     - [Select](#select)
     - [Toggle](#toggle)
 - [TODO](#todo)
+
+Used [Terminalizer](https://github.com/faressoft/terminalizer) to record the demo.
 
 ## Installation
 
