@@ -82,7 +82,7 @@ bool is_valid = enquirer::auth([](const std::pair<std::string, std::string> &cre
 
 **Result**
 
-![Image]()
+![Auth](medias/auth.gif)
 
 ### Autocomplete
 
@@ -113,7 +113,7 @@ std::string answer = enquirer::autocomplete("What is you favorite fruit", {
 
 **Result**
 
-![Image]()
+![Autocomplete](medias/autocomplete.gif)
 
 ### Confirm
 
@@ -137,7 +137,7 @@ while (!quit) {
 
 **Result**
 
-![Image]()
+![Confirm](medias/confirm.gif)
 
 ### Form
 
@@ -160,6 +160,10 @@ auto answers = enquirer::form("Please provide some informations:", {
 });
 ```
 
+**Result**
+
+![Form](medias/form.gif)
+
 ### Input
 
 Prompt the question and return the answer.
@@ -179,7 +183,7 @@ std::string answer = enquirer::input("What is your name?", "John Doe");
 
 **Result**
 
-![Image]()
+![Input](medias/input.gif)
 
 ### Invisible
 
@@ -199,7 +203,7 @@ std::string secret = enquirer::invisible("What is your secret?");
 
 **Result**
 
-![Image]()
+![Invisible](medias/invisible.gif)
 
 ### List
 
@@ -219,7 +223,7 @@ auto keywords = enquirer::list("Type comma separated keywords");
 
 **Result**
 
-![Image]()
+![List](medias/list.gif)
 
 ### MultiSelect
 
@@ -249,7 +253,7 @@ auto choices = enquirer::multi_select("Choose some colors", {
 
 **Result**
 
-![Image]()
+![MultiSelect](medias/multiselect.gif)
 
 ### Number
 
@@ -271,7 +275,7 @@ auto pi = enquirer::number<double>("What is the value of PI?");
 
 **Result**
 
-![Image]()
+![Number](medias/number.gif)
 
 ### Password
 
@@ -292,7 +296,7 @@ auto pwd = enquirer::password("What is your password?");
 
 **Result**
 
-![Image]()
+![Password](medias/password.gif)
 
 ### Quiz
 
@@ -317,7 +321,7 @@ else
 
 **Result**
 
-![Image]()
+![Quiz](medias/quiz.gif)
 
 ### Slider
 
@@ -343,7 +347,7 @@ int value = enquirer::slider<int>("How much do you want?", 0, 10, 1, 1);
 
 **Result**
 
-![Image]()
+![Slider](medias/slider.gif)
 
 ### Select
 
@@ -368,7 +372,7 @@ auto language = enquirer::select("Which is the best one?", {
 
 **Result**
 
-![Image]()
+![Select](medias/select.gif)
 
 ### Toggle
 
@@ -391,7 +395,7 @@ bool light = enquirer::toggle("Light?", "On", "Off", true);
 
 **Result**
 
-![Image]()
+![Toggle](medias/toggle.gif)
 
 ## TODO
 
