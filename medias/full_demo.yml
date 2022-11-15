@@ -53,8 +53,9 @@ config:
     title: Enquirer demo
     style:
       border: 0px black solid
+      borderRadius: 0px
       # boxShadow: none
-      # margin: 0px
+      margin: 0px
 
   # Add a watermark image to the rendered gif
   # You need to specify an absolute path for
@@ -112,7 +113,7 @@ config:
 # Records, feel free to edit them
 records:
   - delay: 426
-    content: "\a\e[01;32mkevin@fred\e[00m:\e[01;34m~\e[00m$ "
+    content: "\e[01;32mkevin@fred\e[00m:\e[01;34m~\e[00m$ "
   - delay: 1791
     content: .
   - delay: 232
