@@ -24,7 +24,7 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
     - [Toggle](#toggle)
 - [TODO](#todo)
 
-Used [Terminalizer](https://github.com/faressoft/terminalizer) to record the demo.
+Have use [Terminalizer](https://github.com/faressoft/terminalizer) to record the demo.
 
 ## Installation
 
