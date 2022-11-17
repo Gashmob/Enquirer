@@ -25,6 +25,7 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
     - [Slider](#slider)
     - [Select](#select)
     - [Toggle](#toggle)
+- [Tests](#tests)
 - [TODO](#todo)
 
 Have use [Terminalizer](https://github.com/faressoft/terminalizer) to record the demo.
@@ -399,6 +400,12 @@ bool light = enquirer::toggle("Light?", "On", "Off", true);
 **Result**
 
 ![Toggle](medias/toggle.gif)
+
+## Tests
+
+All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu, macOS
+and Windows. The tests sources are located in `tests/test.cpp` and use
+a [simple c++ test framework](https://gist.github.com/Gashmob/0f11b5b5546e1e9893f52143a5b35e50).
 
 ## TODO
 
