@@ -10,5 +10,6 @@ target_include_directories(demo PUBLIC include/enquirer)
 
 add_executable(test
         tests/test.cpp
-        include/enquirer/enquirer.hpp tests/test.hpp)
+        include/enquirer/enquirer.hpp
+        tests/test.hpp)
 target_include_directories(test PUBLIC include/enquirer)
