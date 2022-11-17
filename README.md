@@ -1,5 +1,8 @@
 # Enquirer
 
+[![wakatime](https://wakatime.com/badge/github/Gashmob/Enquirer.svg)](https://wakatime.com/badge/github/Gashmob/Enquirer)
+[![Tests](https://github.com/Gashmob/Enquirer/actions/workflows/test.yml/badge.svg)](https://github.com/Gashmob/Enquirer/actions/workflows/test.yml)
+
 A collection of function to make an interactive CLI. Inspired by [Enquirer.js](https://www.npmjs.com/package/enquirer).
 
 **Full demo**
@@ -400,5 +403,3 @@ bool light = enquirer::toggle("Light?", "On", "Off", true);
 ## TODO
 
 - [ ] _**Tests**_
-
-Pour les tests, rediriger cin et cout sur des stringstream pour contrôler l'entrée-sortie.
