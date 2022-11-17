@@ -8,76 +8,100 @@
 #include <termios.h>
 #include <iostream>
 
-using namespace std;
-
-static map<string, function<void()>> tests;
-static int passed = 0;
-
-static int nb_tests = 0;
-static int nb_passed = 0;
+/*
+ * Simple c++ test framework
+ *
+ * Usage:
+ * // Instantiate a test object
+ * Test test;
+ * // Describe some tests
+ * test.describe("Test 1", []() {
+ *      // Test some things
+ *      Test::Result res = it("1 is equal to 1", []() {
+ *          assert_equal(1, 1);
+ *
+ *          return Test::PASS;
+ *      });
+ *
+ *      // You can use assert (or should directly)
+ *      should_not_equal(1, 2);
+ *
+ *      return res;
+ * });
+ * // Run tests
+ * bool success = test.run();
+ *
+ * // It will display that (with colors)
+ * Run 1 test
+ * Test 1
+ * ✔ 1 is equal to 1
+ *  PASS
+ *
+ *  All tests passed
+ *
+ *  // describe()
+ *  method describe takes 2 arguments :
+ *  - name of the test
+ *  - function of the test. This function should return a Test::Result
+ *
+ *  // it()
+ *  macro it takes 2 arguments :
+ *  - name of the test
+ *  - function of the test. This function should return a Test::Result
+ *
+ *  // assert_* and should_*
+ *  For each assert, there is an equivalent should (and vice versa)
+ *  If assert failed, the test fail. If should failed, the test is skipped
+ *  List of assert_* and should_*
+ *  - equal
+ *  - not_equal
+ *  - less
+ *  - great
+ *  - less_equal
+ *  - great_equal
+ *  - true
+ *  - false
+ */
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
 
+/**
+ * Colors used for displaying tests
+ */
 namespace color {
-    const string black = "\033[30m";
-    const string red = "\033[31m";
-    const string green = "\033[32m";
-    const string yellow = "\033[33m";
-    const string blue = "\033[34m";
-    const string magenta = "\033[35m";
-    const string cyan = "\033[36m";
-    const string white = "\033[37m";
-    const string grey = "\033[90m";
+    const std::string black = "\033[30m";
+    const std::string red = "\033[31m";
+    const std::string green = "\033[32m";
+    const std::string yellow = "\033[33m";
+    const std::string blue = "\033[34m";
+    const std::string cyan = "\033[36m";
+    const std::string grey = "\033[90m";
 
-    const string bg_black = "\033[40m";
-    const string bg_red = "\033[41m";
-    const string bg_green = "\033[42m";
-    const string bg_yellow = "\033[43m";
-    const string bg_blue = "\033[44m";
-    const string bg_magenta = "\033[45m";
-    const string bg_cyan = "\033[46m";
-    const string bg_white = "\033[47m";
-    const string bg_grey = "\033[100m";
+    const std::string bg_red = "\033[41m";
+    const std::string bg_green = "\033[42m";
+    const std::string bg_yellow = "\033[43m";
 
-    const string reset = "\033[0m";
-    const string bold = "\033[1m";
-    const string underline = "\033[4m";
-    const string blink = "\033[5m";
-    const string inverse = "\033[7m";
+    const std::string reset = "\033[0m";
+    const std::string bold = "\033[1m";
 }
 
+/**
+ * Utility functions for tests
+ */
 namespace utils {
-    inline string move_up(uint n = 1) {
-        return "\033[" + to_string(n) + "A";
+    inline std::string move_left(uint n = 1) {
+        return "\033[" + std::to_string(n) + "D";
     }
 
-    inline string move_down(uint n = 1) {
-        return "\033[" + to_string(n) + "B";
+    inline std::string clear_line() {
+        return "\033[0K";
     }
 
-    inline string move_left(uint n = 1) {
-        return "\033[" + to_string(n) + "D";
-    }
-
-    inline string move_right(uint n = 1) {
-        return "\033[" + to_string(n) + "C";
-    }
-
-    typedef enum {
-        EOL = 0,
-        BOL = 1,
-        LINE = 2
-    } clear_mode;
-
-    inline string clear_line(clear_mode mode) {
-        return "\033[" + to_string(mode) + "K";
-    }
-
-    inline string hide_cursor() {
+    inline std::string hide_cursor() {
         return "\033[?25l";
     }
 
-    inline string show_cursor() {
+    inline std::string show_cursor() {
         return "\033[?25h";
     }
 
@@ -98,57 +122,203 @@ namespace utils {
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
 
-bool run_tests() {
-    utils::enable_raw_mode();
-    cout << utils::hide_cursor();
-    cout << "Run " << tests.size() << " tests" << endl;
-    passed = 0;
+namespace Test {
+    /**
+     * Result of a test
+     */
+    typedef enum {
+        PASS = 0,
+        FAIL = 1,
+        SKIP = 2
+    } Result;
 
-    for (const auto &test: tests) {
-        cout << color::bg_blue << " " << test.first << " " << color::reset << endl;
+    /**
+     * Class Test used to describe and run tests
+     */
+    class Test {
+    public:
+        Test() = default;
 
-        // Init
-        nb_tests = 0;
-        nb_passed = 0;
-
-        // Run
-        test.second();
-
-        // Resume
-        if (nb_tests == nb_passed) {
-            cout << color::bg_green << " " << nb_passed << "/" << nb_tests << " passed " << color::reset << endl;
-            passed++;
-        } else {
-            cout << color::bg_red << " " << nb_passed << "/" << nb_tests << " passed " << color::reset << endl;
+        /**
+         * Describe a new test
+         *
+         * @param name Name of the test
+         * @param func The test itself
+         */
+        void describe(const std::string &name, const std::function<Result()> &func) {
+            _tests[name] = func;
         }
-    }
 
-    // Resume
-    cout << endl;
-    bool result = passed == tests.size();
-    if (result) {
-        cout << color::bg_green << " " << passed << "/" << tests.size() << " passed " << color::reset << endl;
-    } else {
-        cout << color::bg_red << " " << passed << "/" << tests.size() << " passed " << color::reset << endl;
-    }
-    cout << utils::show_cursor();
-    utils::disable_raw_mode();
+        /**
+         * Run all described tests
+         *
+         * @return Result of tests
+         */
+        bool run() {
+            utils::enable_raw_mode();
+            std::cout << utils::hide_cursor();
 
-    return result;
+            std::cout << color::bold << color::blue << " Run " << _tests.size() << " test"
+                      << (_tests.size() > 1 ? "s" : "") << color::reset
+                      << std::endl;
+
+            int passed = 0;
+            before_all();
+            for (const auto &test: _tests) {
+                std::cout << color::cyan << test.first << color::reset << std::endl;
+
+                before_each();
+                auto res = test.second();
+                after_each();
+
+                switch (res) {
+                    case PASS:
+                        std::cout << "  " << color::bg_green << color::black << " PASS " << color::reset << std::endl;
+                        passed++;
+                        break;
+                    case FAIL:
+                        std::cout << "  " << color::bg_red << color::black << " FAIL " << color::reset << std::endl;
+                        break;
+                    case SKIP:
+                        std::cout << "  " << color::bg_yellow << color::black << " SKIP " << color::reset << std::endl;
+                        passed++;
+                        break;
+                }
+                std::cout << std::endl;
+            }
+            after_all();
+
+            // Resume
+            bool result = passed == _tests.size();
+            if (result) {
+                std::cout << color::bold << color::green << " All tests passed " << color::reset << std::endl;
+            } else {
+                std::cout << color::bold << color::red << " " << _tests.size() - passed << " tests failed "
+                          << color::reset << std::endl;
+            }
+
+            std::cout << utils::show_cursor();
+            utils::disable_raw_mode();
+
+            return result;
+        }
+
+        /**
+         * Function called before each tests
+         */
+        std::function<void()> before_each = []() {};
+        /**
+         * Function called after each tests
+         */
+        std::function<void()> after_each = []() {};
+        /**
+         * Function called before all tests
+         */
+        std::function<void()> before_all = []() {};
+        /**
+         * Function called after all tests
+         */
+        std::function<void()> after_all = []() {};
+
+    private:
+        std::map<std::string, std::function<Result()>> _tests;
+    };
+
+// ====================
+
+/**
+ * Run a simple test and return the result
+ */
+#define it(name, func) ([]() {                                                   \
+    std::cout << color::grey << "⏲ " << name << color::reset;                   \
+    Test::Result res = func();                                                   \
+    std::cout << utils::move_left(1000) << utils::clear_line();                  \
+    switch (res) {                                                               \
+    case Test::PASS:                                                             \
+        std::cout << color::green << "✔ " << name << color::reset << std::endl;  \
+        break;                                                                   \
+    case Test::SKIP:                                                             \
+        std::cout << color::yellow << "⚠ " << name << color::reset << std::endl; \
+        break;                                                                   \
+    case Test::FAIL:                                                             \
+        std::cout << color::red << "✘ " << name << color::reset << std::endl;    \
+        break;                                                                   \
+    }                                                                            \
+    return res;                                                                  \
+    })()
+
+// ====================
+// Asserts (FAIL if false)
+
+/**
+ * Assert that a is equal to b
+ */
+#define assert_equal(a, b) if (a != b) { return Test::FAIL; }
+/**
+ * Assert that a is not equal to b
+ */
+#define assert_not_equal(a, b) if (a == b) { return Test::FAIL; }
+/**
+ * Assert that a is less than b
+ */
+#define assert_less(a, b) if (a >= b) { return Test::FAIL; }
+/**
+ * Assert that a is greater than b
+ */
+#define assert_great(a, b) if (a <= b) { return Test::FAIL; }
+/**
+ * Assert that a is less or equal to b
+ */
+#define assert_less_equal(a, b) if (a > b) { return Test::FAIL; }
+/**
+ * Assert that a is greater or equal to b
+ */
+#define assert_great_equal(a, b) if (a < b) { return Test::FAIL; }
+/**
+ * Assert that a is true
+ */
+#define assert_true(a) if (!a) { return Test::FAIL; }
+/**
+ * Assert that a is false
+ */
+#define assert_false(a) if (a) { return Test::FAIL; }
+
+// ====================
+// Should (SKIP if false)
+
+/**
+ * a should be equal to b
+ */
+#define should_equal(a, b) if (a != b) { return Test::SKIP; }
+/**
+ * a should not be equal to b
+ */
+#define should_not_equal(a, b) if (a == b) { return Test::SKIP; }
+/**
+ * a should be less than b
+ */
+#define should_less(a, b) if (a >= b) { return Test::SKIP; }
+/**
+ * a should be greater than b
+ */
+#define should_great(a, b) if (a <= b) { return Test::SKIP; }
+/**
+ * a should be less or equal to b
+ */
+#define should_less_equal(a, b) if (a > b) { return Test::SKIP; }
+/**
+ * a should be greater or equal to b
+ */
+#define should_great_equal(a, b) if (a < b) { return Test::SKIP; }
+/**
+ * a should be true
+ */
+#define should_true(a) if (!a) { return Test::SKIP; }
+/**
+ * a should be false
+ */
+#define should_false(a) if (a) { return Test::SKIP; }
+
 }
-
-#define describe(name, test) \
-    tests[name] = test;
-
-#define it(name, test)                                                \
-    cout << color::cyan << "  " << name << color::reset;              \
-    cout << utils::move_left(1000);                                   \
-    nb_tests++                                                        \
-    if (test()) {                                                     \
-        cout << color::green << "  " << name << color::reset << endl; \
-        nb_passed++;                                                  \
-    } else {                                                          \
-        cout << color::red << "  " << name << color::reset << endl;   \
-    }
 
 #endif // TEST_HPP
