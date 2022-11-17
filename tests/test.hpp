@@ -42,12 +42,12 @@
  *  // describe()
  *  method describe takes 2 arguments :
  *  - name of the test
- *  - function of the test. This function should return a Test::Result
+ *  - function of the test. This function should return a test::Result
  *
  *  // it()
  *  macro it takes 2 arguments :
  *  - name of the test
- *  - function of the test. This function should return a Test::Result
+ *  - function of the test. This function should return a test::Result
  *
  *  // assert_* and should_*
  *  For each assert, there is an equivalent should (and vice versa)
@@ -61,6 +61,18 @@
  *  - great_equal
  *  - true
  *  - false
+ *
+ *  // it_<a>_<b>()
+ *  These macros are some helpers for tests, it runs a test and return b if not a.
+ *  In fact, it's just a shortcut : it_<a>_fail() is assert_equal(<a>, it()) and
+ *                                  it_<a>_skip() is should_equal(<a>, it())
+ *  List of it_<a>_<b>()
+ *  - it_pass_fail
+ *  - it_fail_fail
+ *  - it_skip_fail
+ *  - it_pass_skip
+ *  - it_fail_skip
+ *  - it_skip_skip
  */
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
@@ -122,7 +134,7 @@ namespace utils {
 
 // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
 
-namespace Test {
+namespace test {
     /**
      * Result of a test
      */
@@ -230,22 +242,55 @@ namespace Test {
  * Run a simple test and return the result
  */
 #define it(name, func) ([]() {                                                   \
-    std::cout << color::grey << "⏲ " << name << color::reset;                   \
-    Test::Result res = func();                                                   \
+    std::cout << color::grey << "⏲ " << name << color::reset;                    \
+    std::cout.flush();                                                           \
+    std::streambuf *old = std::cout.rdbuf(nullptr);                              \
+    test::Result res = func();                                                   \
+    std::cout.rdbuf(old);                                                        \
     std::cout << utils::move_left(1000) << utils::clear_line();                  \
     switch (res) {                                                               \
-    case Test::PASS:                                                             \
+    case test::PASS:                                                             \
         std::cout << color::green << "✔ " << name << color::reset << std::endl;  \
         break;                                                                   \
-    case Test::SKIP:                                                             \
+    case test::SKIP:                                                             \
         std::cout << color::yellow << "⚠ " << name << color::reset << std::endl; \
         break;                                                                   \
-    case Test::FAIL:                                                             \
+    case test::FAIL:                                                             \
         std::cout << color::red << "✘ " << name << color::reset << std::endl;    \
         break;                                                                   \
     }                                                                            \
     return res;                                                                  \
     })()
+
+/**
+ * Derivation of it() that fail if the test is FAIL or SKIP
+ */
+#define it_pass_fail(name, func) assert_equal(test::PASS, it(name, func))
+
+/**
+ * Derivation of it() that fail if the test is PASS or SKIP
+ */
+#define it_fail_fail(name, func) assert_equal(test::FAIL, it(name, func))
+
+/**
+ * Derivation of it() that fail if the test is PASS or FAIL
+ */
+#define it_skip_fail(name, func) assert_equal(test::SKIP, it(name, func))
+
+/**
+ * Derivation of it() that skip if the test is FAIL or SKIP
+ */
+#define it_pass_skip(name, func) should_equal(test::PASS, it(name, func))
+
+/**
+ * Derivation of it() that skip if the test is PASS or SKIP
+ */
+#define it_fail_skip(name, func) should_equal(test::FAIL, it(name, func))
+
+/**
+ * Derivation of it() that skip if the test is PASS or FAIL
+ */
+#define it_skip_skip(name, func) should_equal(test::SKIP, it(name, func))
 
 // ====================
 // Asserts (FAIL if false)
@@ -253,35 +298,35 @@ namespace Test {
 /**
  * Assert that a is equal to b
  */
-#define assert_equal(a, b) if (a != b) { return Test::FAIL; }
+#define assert_equal(a, b) if (a != b) { return test::FAIL; }
 /**
  * Assert that a is not equal to b
  */
-#define assert_not_equal(a, b) if (a == b) { return Test::FAIL; }
+#define assert_not_equal(a, b) if (a == b) { return test::FAIL; }
 /**
  * Assert that a is less than b
  */
-#define assert_less(a, b) if (a >= b) { return Test::FAIL; }
+#define assert_less(a, b) if (a >= b) { return test::FAIL; }
 /**
  * Assert that a is greater than b
  */
-#define assert_great(a, b) if (a <= b) { return Test::FAIL; }
+#define assert_great(a, b) if (a <= b) { return test::FAIL; }
 /**
  * Assert that a is less or equal to b
  */
-#define assert_less_equal(a, b) if (a > b) { return Test::FAIL; }
+#define assert_less_equal(a, b) if (a > b) { return test::FAIL; }
 /**
  * Assert that a is greater or equal to b
  */
-#define assert_great_equal(a, b) if (a < b) { return Test::FAIL; }
+#define assert_great_equal(a, b) if (a < b) { return test::FAIL; }
 /**
  * Assert that a is true
  */
-#define assert_true(a) if (!a) { return Test::FAIL; }
+#define assert_true(a) if (!a) { return test::FAIL; }
 /**
  * Assert that a is false
  */
-#define assert_false(a) if (a) { return Test::FAIL; }
+#define assert_false(a) if (a) { return test::FAIL; }
 
 // ====================
 // Should (SKIP if false)
@@ -289,35 +334,35 @@ namespace Test {
 /**
  * a should be equal to b
  */
-#define should_equal(a, b) if (a != b) { return Test::SKIP; }
+#define should_equal(a, b) if (a != b) { return test::SKIP; }
 /**
  * a should not be equal to b
  */
-#define should_not_equal(a, b) if (a == b) { return Test::SKIP; }
+#define should_not_equal(a, b) if (a == b) { return test::SKIP; }
 /**
  * a should be less than b
  */
-#define should_less(a, b) if (a >= b) { return Test::SKIP; }
+#define should_less(a, b) if (a >= b) { return test::SKIP; }
 /**
  * a should be greater than b
  */
-#define should_great(a, b) if (a <= b) { return Test::SKIP; }
+#define should_great(a, b) if (a <= b) { return test::SKIP; }
 /**
  * a should be less or equal to b
  */
-#define should_less_equal(a, b) if (a > b) { return Test::SKIP; }
+#define should_less_equal(a, b) if (a > b) { return test::SKIP; }
 /**
  * a should be greater or equal to b
  */
-#define should_great_equal(a, b) if (a < b) { return Test::SKIP; }
+#define should_great_equal(a, b) if (a < b) { return test::SKIP; }
 /**
  * a should be true
  */
-#define should_true(a) if (!a) { return Test::SKIP; }
+#define should_true(a) if (!a) { return test::SKIP; }
 /**
  * a should be false
  */
-#define should_false(a) if (a) { return Test::SKIP; }
+#define should_false(a) if (a) { return test::SKIP; }
 
 }
 
