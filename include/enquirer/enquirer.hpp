@@ -13,12 +13,17 @@
 #include <functional>
 #include <map>
 #include <vector>
-#include <unistd.h>
 #include <termios.h>
 #include <sstream>
 #include <sys/ioctl.h>
 #include <cmath>
 #include <algorithm>
+
+#ifdef _WIN32
+#include <io.h>
+#else
+#include <unistd.h>
+#endif
 
 namespace enquirer {
 
