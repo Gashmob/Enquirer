@@ -403,8 +403,7 @@ bool light = enquirer::toggle("Light?", "On", "Off", true);
 
 ## Tests
 
-All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu, macOS
-and Windows. The tests sources are located in `tests/test.cpp` and use
+All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu and macOS. The tests sources are located in `tests/test.cpp` and use
 a [simple c++ test framework](https://gist.github.com/Gashmob/0f11b5b5546e1e9893f52143a5b35e50).
 
 ## TODO
