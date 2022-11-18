@@ -52,6 +52,8 @@ Please note :
 - All functions are in the `enquirer` namespace.
 - All functions are synchronous (wait until user submit).
 
+You can try the demo by building the `demo` target.
+
 ### Auth
 
 Ask the user for username and password.
@@ -402,6 +404,8 @@ bool light = enquirer::toggle("Light?", "On", "Off", true);
 
 ## Tests
 
-All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu and macOS. The tests sources are located in `tests/test.cpp` and use
-a [simple c++ test framework](https://gist.github.com/Gashmob/0f11b5b5546e1e9893f52143a5b35e50).
+All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu and macOS.
+The tests sources are located in `tests/test.cpp` and use
+a [simple c++ test framework](https://gist.github.com/Gashmob/0f11b5b5546e1e9893f52143a5b35e50). You can run the tests
+by building the `test` target.
 
