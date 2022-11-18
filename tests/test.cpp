@@ -213,7 +213,93 @@ void construct_test(Test &test) {
     });
 
     test.describe("Form", []() {
-        return SKIP;
+        it_pass_fail("can take input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "test" << utils_char::arrow_down
+               << "test2" << utils_char::arrow_down
+               << "test3" << endl;
+            auto answers = enquirer::form("Please provide some informations:", {
+                    "Firstname",
+                    "Lastname",
+                    "Username"
+            });
+
+            cin.rdbuf(old);
+
+            assert_equal("test", answers["Firstname"]);
+            assert_equal("test2", answers["Lastname"]);
+            assert_equal("test3", answers["Username"]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take input in reverse order", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_up << "test3"
+               << utils_char::arrow_up << "test2"
+               << utils_char::arrow_up << "test" << endl;
+            auto answers = enquirer::form("Please provide some informations:", {
+                    "Firstname",
+                    "Lastname",
+                    "Username"
+            });
+
+            cin.rdbuf(old);
+
+            assert_equal("test", answers["Firstname"]);
+            assert_equal("test2", answers["Lastname"]);
+            assert_equal("test3", answers["Username"]);
+
+            return PASS;
+        })
+
+        it_pass_fail("fill first and last, then enter and fill second", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "test" << utils_char::arrow_down << utils_char::arrow_down
+               << "test3" << endl
+               << "test2" << endl;
+            auto answers = enquirer::form("Please provide some informations:", {
+                    "Firstname",
+                    "Lastname",
+                    "Username"
+            });
+
+            cin.rdbuf(old);
+
+            assert_equal("test", answers["Firstname"]);
+            assert_equal("test2", answers["Lastname"]);
+            assert_equal("test3", answers["Username"]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can complete only with enter", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "test" << endl
+               << "test2" << endl
+               << "test3" << endl;
+            auto answers = enquirer::form("Please provide some informations:", {
+                    "Firstname",
+                    "Lastname",
+                    "Username"
+            });
+
+            cin.rdbuf(old);
+
+            assert_equal("test", answers["Firstname"]);
+            assert_equal("test2", answers["Lastname"]);
+            assert_equal("test3", answers["Username"]);
+
+            return PASS;
+        })
 
         return PASS;
     });
