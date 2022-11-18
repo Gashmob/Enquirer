@@ -337,7 +337,19 @@ void construct_test(Test &test) {
     });
 
     test.describe("Invisible", []() {
-        return SKIP;
+        it_pass_fail("return the input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "Hello world!" << endl;
+            string res = enquirer::invisible("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(res, "Hello world!")
+
+            return PASS;
+        })
 
         return PASS;
     });
