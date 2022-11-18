@@ -12,6 +12,30 @@ using namespace std;
 using namespace test;
 
 void construct_test(Test &test) {
+    test.describe("Auth", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Autocomplete", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Confirm", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Form", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
     test.describe("Input", []() {
         it_pass_fail("return the input", []() {
             stringstream ss;
@@ -40,6 +64,60 @@ void construct_test(Test &test) {
 
             return PASS;
         })
+
+        return PASS;
+    });
+
+    test.describe("Invisible", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("List", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("MultiSelect", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Number", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Password", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Quiz", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Slider", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Select", []() {
+        return SKIP;
+
+        return PASS;
+    });
+
+    test.describe("Toggle", []() {
+        return SKIP;
 
         return PASS;
     });
