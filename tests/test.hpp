@@ -61,6 +61,8 @@
  *  - great_equal
  *  - true
  *  - false
+ *  - empty
+ *  - not_empty
  *
  *  // it_<a>_<b>()
  *  These macros are some helpers for tests, it runs a test and return b if not a.
@@ -327,6 +329,14 @@ namespace test {
  * Assert that a is false
  */
 #define assert_false(a) if (a) { return test::FAIL; }
+/**
+ * Assert that a is empty
+ */
+#define assert_empty(a) if (!a.empty()) { return test::FAIL; }
+/**
+ * Assert that a is not empty
+ */
+#define assert_not_empty(a) if (!a.empty()) { return test::FAIL; }
 
 // ====================
 // Should (SKIP if false)
@@ -363,6 +373,14 @@ namespace test {
  * a should be false
  */
 #define should_false(a) if (a) { return test::SKIP; }
+/**
+ * a should be empty
+ */
+#define should_empty(a) if (!a.empty()) { return test::SKIP; }
+/**
+ * a should be not empty
+ */
+#define should_not_empty(a) if (a.empty()) { return test::SKIP; }
 
 }
 

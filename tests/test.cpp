@@ -355,7 +355,108 @@ void construct_test(Test &test) {
     });
 
     test.describe("List", []() {
-        return SKIP;
+        it_pass_fail("can take simple input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a" << endl;
+            auto res = enquirer::list("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(1, res.size());
+            assert_equal("a", res[0]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take multiple input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a, b, c" << endl;
+            auto res = enquirer::list("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(3, res.size());
+            assert_equal("a", res[0]);
+            assert_equal("b", res[1]);
+            assert_equal("c", res[2]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take input with more spaces", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a   ,       b,      c      ,d,e,f" << endl;
+            auto res = enquirer::list("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(6, res.size());
+            assert_equal("a", res[0]);
+            assert_equal("b", res[1]);
+            assert_equal("c", res[2]);
+            assert_equal("d", res[3]);
+            assert_equal("e", res[4]);
+            assert_equal("f", res[5]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take empty input at begin", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << ", b, c" << endl;
+            auto res = enquirer::list("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(3, res.size());
+            assert_empty(res[0]);
+            assert_equal("b", res[1]);
+            assert_equal("c", res[2]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take empty input at middle", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a, , c" << endl;
+            auto res = enquirer::list("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(3, res.size());
+            assert_equal("a", res[0]);
+            assert_empty(res[1]);
+            assert_equal("c", res[2]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take empty input at end", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a, b, " << endl;
+            auto res = enquirer::list("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(3, res.size());
+            assert_equal("a", res[0]);
+            assert_equal("b", res[1]);
+            assert_empty(res[2]);
+
+            return PASS;
+        })
 
         return PASS;
     });
