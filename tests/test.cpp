@@ -462,7 +462,68 @@ void construct_test(Test &test) {
     });
 
     test.describe("MultiSelect", []() {
-        return SKIP;
+        it_pass_fail("can take no input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            auto res = enquirer::multi_select("Choose", {
+                    "a",
+                    "b",
+                    "c"
+            });
+
+            cin.rdbuf(old);
+
+            assert_empty(res);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take several input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_right << utils_char::arrow_up
+               << utils_char::arrow_right << endl;
+            auto res = enquirer::multi_select("Choose", {
+                    "a",
+                    "b",
+                    "c"
+            });
+
+            cin.rdbuf(old);
+
+            assert_equal(2, res.size());
+            assert_equal("a", res[0]);
+            assert_equal("c", res[1]);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take several input in reverse order", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_up << utils_char::arrow_right
+               << utils_char::arrow_up << utils_char::arrow_right
+               << utils_char::arrow_up << utils_char::arrow_right
+               << endl;
+            auto res = enquirer::multi_select("Choose", {
+                    "a",
+                    "b",
+                    "c"
+            });
+
+            cin.rdbuf(old);
+
+            assert_equal(3, res.size());
+            assert_equal("a", res[0]);
+            assert_equal("b", res[1]);
+            assert_equal("c", res[2]);
+
+            return PASS;
+        })
 
         return PASS;
     });
