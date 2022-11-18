@@ -547,7 +547,19 @@ void construct_test(Test &test) {
     });
 
     test.describe("Password", []() {
-        return SKIP;
+        it_pass_fail("can take simple input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "p@ssw0rd" << endl;
+            auto res = enquirer::password("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal("p@ssw0rd", res);
+
+            return PASS;
+        })
 
         return PASS;
     });
