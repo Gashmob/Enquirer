@@ -685,7 +685,63 @@ void construct_test(Test &test) {
     });
 
     test.describe("Toggle", []() {
-        return SKIP;
+        it_pass_fail("return default true", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            bool res = enquirer::toggle("Choose", "", "", true);
+
+            cin.rdbuf(old);
+
+            assert_true(res);
+
+            return PASS;
+        })
+
+        it_pass_fail("return default false", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            bool res = enquirer::toggle("Choose", "", "", false);
+
+            cin.rdbuf(old);
+
+            assert_false(res);
+
+            return PASS;
+        })
+
+        it_pass_fail("return true", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_left
+               << endl;
+            bool res = enquirer::toggle("Choose", "", "", false);
+
+            cin.rdbuf(old);
+
+            assert_true(res);
+
+            return PASS;
+        })
+
+        it_pass_fail("return false", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_right
+               << endl;
+            bool res = enquirer::toggle("Choose", "", "", true);
+
+            cin.rdbuf(old);
+
+            assert_false(res);
+
+            return PASS;
+        })
 
         return PASS;
     });
