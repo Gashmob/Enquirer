@@ -18,6 +18,7 @@ namespace utils_char {
     const string arrow_left = "\e[D";
 
     const string tab = "\t";
+    const string del = "\x7F";
 }
 
 void construct_test(Test &test) {
@@ -92,7 +93,61 @@ void construct_test(Test &test) {
     });
 
     test.describe("Autocomplete", []() {
-        return SKIP;
+        it_pass_fail("can complete first", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a" << utils_char::tab << endl;
+            string result = enquirer::autocomplete("", {"abcde"});
+
+            cin.rdbuf(old);
+
+            assert_equal("abcde", result);
+
+            return PASS;
+        })
+
+        it_pass_fail("can complete second", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a" << utils_char::arrow_down << utils_char::tab << endl;
+            string result = enquirer::autocomplete("", {"abcde", "abcde2"});
+
+            cin.rdbuf(old);
+
+            assert_equal("abcde2", result);
+
+            return PASS;
+        })
+
+        it_pass_fail("can take other input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a" << utils_char::del << "bonjour" << endl;
+            string result = enquirer::autocomplete("", {"abcde", "abcde2"});
+
+            cin.rdbuf(old);
+
+            assert_equal("bonjour", result);
+
+            return PASS;
+        })
+
+        it_pass_fail("can complete first passing by second", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "a" << utils_char::arrow_down << utils_char::arrow_down << utils_char::tab << endl;
+            string result = enquirer::autocomplete("", {"abcde", "abcdef"});
+
+            cin.rdbuf(old);
+
+            assert_equal("abcde", result);
+
+            return PASS;
+        })
 
         return PASS;
     });
