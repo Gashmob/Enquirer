@@ -153,7 +153,61 @@ void construct_test(Test &test) {
     });
 
     test.describe("Confirm", []() {
-        return SKIP;
+        it_pass_fail("default false", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            bool result = enquirer::confirm("test", false);
+
+            cin.rdbuf(old);
+
+            assert_false(result);
+
+            return PASS;
+        })
+
+        it_pass_fail("default true", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            bool result = enquirer::confirm("test", true);
+
+            cin.rdbuf(old);
+
+            assert_true(result);
+
+            return PASS;
+        })
+
+        it_pass_fail("can confirm true from false", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_left << endl;
+            bool result = enquirer::confirm("test", false);
+
+            cin.rdbuf(old);
+
+            assert_true(result);
+
+            return PASS;
+        })
+
+        it_pass_fail("can confirm false from true", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_right << endl;
+            bool result = enquirer::confirm("test", true);
+
+            cin.rdbuf(old);
+
+            assert_false(result);
+
+            return PASS;
+        })
 
         return PASS;
     });
