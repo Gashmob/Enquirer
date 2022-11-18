@@ -565,7 +565,33 @@ void construct_test(Test &test) {
     });
 
     test.describe("Quiz", []() {
-        return SKIP;
+        it_pass_fail("good answer", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            bool res = enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana");
+
+            cin.rdbuf(old);
+
+            assert_true(res);
+
+            return PASS;
+        })
+
+        it_pass_fail("wrong answer", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_up << endl;
+            bool res = enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana");
+
+            cin.rdbuf(old);
+
+            assert_false(res);
+
+            return PASS;
+        })
 
         return PASS;
     });
