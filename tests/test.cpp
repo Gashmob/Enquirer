@@ -529,7 +529,19 @@ void construct_test(Test &test) {
     });
 
     test.describe("Number", []() {
-        return SKIP;
+        it_pass_fail("can take simple input", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << "1" << endl;
+            auto res = enquirer::number<int>("Type something");
+
+            cin.rdbuf(old);
+
+            assert_equal(1, res);
+
+            return PASS;
+        })
 
         return PASS;
     });
