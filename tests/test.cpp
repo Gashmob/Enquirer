@@ -597,7 +597,56 @@ void construct_test(Test &test) {
     });
 
     test.describe("Slider", []() {
-        return SKIP;
+        it_pass_fail("return initial value", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            int res = enquirer::slider<int>("Choose", 1, 10, 1, 5);
+
+            cin.rdbuf(old);
+
+            assert_equal(5, res);
+
+            return PASS;
+        })
+
+        it_pass_fail("return min value", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_left
+               << utils_char::arrow_left
+               << utils_char::arrow_left
+               << utils_char::arrow_left
+               << endl;
+            int res = enquirer::slider<int>("Choose", 1, 10, 1, 5);
+
+            cin.rdbuf(old);
+
+            assert_equal(1, res);
+
+            return PASS;
+        })
+
+        it_pass_fail("return max value", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_right
+               << utils_char::arrow_right
+               << utils_char::arrow_right
+               << utils_char::arrow_right
+               << utils_char::arrow_right
+               << endl;
+            int res = enquirer::slider<int>("Choose", 1, 10, 1, 5);
+
+            cin.rdbuf(old);
+
+            assert_equal(10, res);
+
+            return PASS;
+        })
 
         return PASS;
     });
