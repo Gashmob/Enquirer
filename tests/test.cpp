@@ -652,7 +652,34 @@ void construct_test(Test &test) {
     });
 
     test.describe("Select", []() {
-        return SKIP;
+        it_pass_fail("return first value", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << endl;
+            string res = enquirer::select("Choose", {"a", "b", "c"});
+
+            cin.rdbuf(old);
+
+            assert_equal("a", res);
+
+            return PASS;
+        })
+
+        it_pass_fail("return last value", []() {
+            stringstream ss;
+            streambuf *old = cin.rdbuf(ss.rdbuf());
+
+            ss << utils_char::arrow_up
+               << endl;
+            string res = enquirer::select("Choose", {"a", "b", "c"});
+
+            cin.rdbuf(old);
+
+            assert_equal("c", res);
+
+            return PASS;
+        })
 
         return PASS;
     });
