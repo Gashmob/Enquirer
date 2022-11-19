@@ -1,0 +1,816 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /home/kevin
+
+  # Export additional ENV variables
+  env:
+    recording: true
+
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 80
+
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 24
+
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+
+  # Quality
+  # 1 - 100
+  quality: 100
+
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Enquirer demo
+    style:
+      border: 0px black solid
+      borderRadius: 0px
+      # boxShadow: none
+      margin: 0px
+
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+
+  # The size of the font
+  fontSize: 12
+
+  # The height of lines
+  lineHeight: 1
+
+  # The spacing between letters
+  letterSpacing: 0
+
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+
+# Records, feel free to edit them
+records:
+  - delay: 426
+    content: "\e[01;32mkevin@fred\e[00m:\e[01;34m~\e[00m$ "
+  - delay: 1791
+    content: .
+  - delay: 232
+    content: /
+  - delay: 324
+    content: d
+  - delay: 76
+    content: e
+  - delay: 334
+    content: 'mo '
+  - delay: 502
+    content: "\r\nEnquirer demo, version 1.0.0\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 1573
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mauth\e[0m\r\n\e[2K\e[90m⊙ \e[0m\e[36mUsername \e[90m\e[1m› \e[0m\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[13C"
+  - delay: 924
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0ma\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[14C"
+  - delay: 286
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mad\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[15C"
+  - delay: 204
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0madm\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[16C"
+  - delay: 143
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0madmi\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[17C"
+  - delay: 67
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[18C"
+  - delay: 639
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[90m⊙ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m\r\n\e[1A\e[13C"
+  - delay: 711
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m*\r\n\e[1A\e[14C"
+  - delay: 261
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m**\r\n\e[1A\e[15C"
+  - delay: 157
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m***\r\n\e[1A\e[16C"
+  - delay: 127
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m****\r\n\e[1A\e[17C"
+  - delay: 107
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m*****\r\n\e[1A\e[18C"
+  - delay: 670
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0madmin\r\n\e[2K\e[32m⦿ \e[0mPassword \e[90m\e[1m› \e[0m*****\r\nYou are successfully authenticated!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1665
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 792
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mauth\e[0m\r\n\e[2K\e[90m⊙ \e[0m\e[36mUsername \e[90m\e[1m› \e[0m\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[13C"
+  - delay: 2498
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mf\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[14C"
+  - delay: 64
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mfn\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[15C"
+  - delay: 47
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mfne\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[16C"
+  - delay: 43
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mfnej\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[17C"
+  - delay: 18
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mfnejz\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[18C"
+  - delay: 70
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[90m⊙ \e[0mPassword \e[90m\e[1m› \e[0m\r\n\e[2A\e[19C"
+  - delay: 497
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[90m⊙ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m\r\n\e[1A\e[13C"
+  - delay: 462
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m*\r\n\e[1A\e[14C"
+  - delay: 15
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m**\r\n\e[1A\e[15C"
+  - delay: 28
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m***\r\n\e[1A\e[16C"
+  - delay: 114
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m****\r\n\e[1A\e[17C"
+  - delay: 44
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m*****\r\n\e[1A\e[18C"
+  - delay: 46
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m******\r\n\e[1A\e[19C"
+  - delay: 80
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0m\e[36mPassword \e[90m\e[1m› \e[0m*******\r\n\e[1A\e[20C"
+  - delay: 594
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mUsername \e[90m\e[1m› \e[0mfnejzf\r\n\e[2K\e[32m⦿ \e[0mPassword \e[90m\e[1m› \e[0m*******\r\nInvalid credentials!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1626
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 700
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 848
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mautocomplete\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0m"
+  - delay: 1619
+    content: "\e[1B\e[1000D\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mB\e[90manana\e[0m\r\n\e[0K\e[36m\e[4mBanana\e[0m\r\n\e[0KBlueberry\r\n\e[3A\e[1000D\e[32C"
+  - delay: 1225
+    content: "\e[3B\e[1000D\e[0K\e[1A\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mB\e[90mlueberry\e[0m\r\n\e[0KBanana\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[3A\e[1000D\e[32C"
+  - delay: 864
+    content: "\e[3B\e[1000D\e[0K\e[1A\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mB\e[90manana\e[0m\r\n\e[0K\e[36m\e[4mBanana\e[0m\r\n\e[0KBlueberry\r\n\e[3A\e[1000D\e[32C"
+  - delay: 656
+    content: "\e[3B\e[1000D\e[0K\e[1A\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mB\e[90mlueberry\e[0m\r\n\e[0KBanana\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[3A\e[1000D\e[32C"
+  - delay: 729
+    content: "\e[3B\e[1000D\e[0K\e[1A\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBlueberry\e[90m\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[40C"
+  - delay: 1162
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBlueberr\e[90my\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[39C"
+  - delay: 287
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBlueber\e[90mry\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[38C"
+  - delay: 171
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBluebe\e[90mrry\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[37C"
+  - delay: 198
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBlueb\e[90merry\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[36C"
+  - delay: 178
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBlue\e[90mberry\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[35C"
+  - delay: 179
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBlu\e[90meberry\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[34C"
+  - delay: 194
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mBl\e[90mueberry\e[0m\r\n\e[0K\e[36m\e[4mBlueberry\e[0m\r\n\e[2A\e[1000D\e[33C"
+  - delay: 340
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mB\e[90manana\e[0m\r\n\e[0K\e[36m\e[4mBanana\e[0m\r\n\e[0KBlueberry\r\n\e[3A\e[1000D\e[32C"
+  - delay: 410
+    content: "\e[3B\e[1000D\e[0K\e[1A\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0m\e[90mApple\e[0m\r\n\e[0K\e[36m\e[4mApple\e[0m\r\n\e[0KBanana\r\n\e[0KBlueberry\r\n\e[0KCherry\r\n\e[0KOrange\r\n\e[0KPear\r\n\e[0KRaspberry\r\n\e[0KStrawberry\r\n\e[9A\e[1000D\e[31C"
+  - delay: 1453
+    content: "\e[9B\e[1000D\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mApple\e[90m\e[0m\r\n\e[0K\e[36m\e[4mApple\e[0m\r\n\e[2A\e[1000D\e[36C"
+  - delay: 2503
+    content: "\e[2B\e[1000D\e[0K\e[1A\e[1A\e[1000D\e[2K\e[2K\e[32m\e[1m✔ \e[0mWhat is you favorite fruit \e[90m\e[1m· \e[0m\e[36mApple\e[0m\r\nYour favorite fruit is Apple\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1773
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 551
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 391
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mautocomplete\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0m"
+  - delay: 3323
+    content: "\e[1B\e[1000D\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mn\r\n\e[1A\e[1000D\e[32C"
+  - delay: 107
+    content: "\e[1B\e[1000D\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mno\r\n\e[1A\e[1000D\e[33C"
+  - delay: 123
+    content: "\e[1B\e[1000D\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mnon\r\n\e[1A\e[1000D\e[34C"
+  - delay: 180
+    content: "\e[1B\e[1000D\e[1A\e[1000D\e[2K\e[2K\e[36m\e[1m? \e[0mWhat is you favorite fruit \e[90m\e[1m› \e[0mnone\r\n\e[1A\e[1000D\e[35C"
+  - delay: 640
+    content: "\e[1B\e[1000D\e[1A\e[1000D\e[2K\e[2K\e[32m\e[1m✔ \e[0mWhat is you favorite fruit \e[90m\e[1m· \e[0m\e[36mnone\e[0m\r\nYour favorite fruit is none\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1288
+    content: "\e[3D\e[0KNo"
+  - delay: 1240
+    content: "\e[2D\e[0KYes"
+  - delay: 506
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 963
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 202
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 337
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mconfirm\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to quit? \e[90m\e[1m› \e[0mNo\e[?25l"
+  - delay: 1261
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to quit? \e[90m\e[1m· \e[0m\e[31mNo\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to quit? \e[90m\e[1m› \e[0mNo\e[?25l"
+  - delay: 554
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to quit? \e[90m\e[1m· \e[0m\e[31mNo\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to quit? \e[90m\e[1m› \e[0mNo\e[?25l"
+  - delay: 673
+    content: "\e[2D\e[0KNo"
+  - delay: 378
+    content: "\e[2D\e[0KYes"
+  - delay: 694
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to quit? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1534
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 878
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 268
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 285
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 508
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mform\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mPlease provide some informations: \e[90m\e[1m› \e[0m\r\n\e[2K\e[90m⊙ \e[0m\e[36mFirstname \e[90m\e[1m› \e[0m\r\n\e[2K\e[90m⊙ \e[0m Lastname \e[90m\e[1m› \e[0m\r\n\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[3A\e[14C"
+  - delay: 1852
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mFirstname \e[90m\e[1m› \e[0mK\r\n\e[0K\e[2K\e[90m⊙ \e[0m Lastname \e[90m\e[1m› \e[0m\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[3A\e[15C"
+  - delay: 255
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mFirstname \e[90m\e[1m› \e[0mKe\r\n\e[0K\e[2K\e[90m⊙ \e[0m Lastname \e[90m\e[1m› \e[0m\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[3A\e[16C"
+  - delay: 221
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mFirstname \e[90m\e[1m› \e[0mKev\r\n\e[0K\e[2K\e[90m⊙ \e[0m Lastname \e[90m\e[1m› \e[0m\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[3A\e[17C"
+  - delay: 100
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mFirstname \e[90m\e[1m› \e[0mKevi\r\n\e[0K\e[2K\e[90m⊙ \e[0m Lastname \e[90m\e[1m› \e[0m\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[3A\e[18C"
+  - delay: 80
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0m\e[36mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[90m⊙ \e[0m Lastname \e[90m\e[1m› \e[0m\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[3A\e[19C"
+  - delay: 345
+    content: "\e[1000D\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[90m⊙ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0m\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[14C"
+  - delay: 439
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0mT\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[15C"
+  - delay: 243
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0mTr\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[16C"
+  - delay: 184
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0mTra\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[17C"
+  - delay: 103
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0mTrai\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[18C"
+  - delay: 60
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0mTrain\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[19C"
+  - delay: 72
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[90m⊙ \e[0m Username \e[90m\e[1m› \e[0m\r\n\e[2A\e[20C"
+  - delay: 666
+    content: "\e[1000D\e[1A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[90m⊙ \e[0m\e[36m Username \e[90m\e[1m› \e[0m\r\n\e[1A\e[14C"
+  - delay: 727
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mG\r\n\e[1A\e[15C"
+  - delay: 250
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mGa\r\n\e[1A\e[16C"
+  - delay: 76
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mGas\r\n\e[1A\e[17C"
+  - delay: 275
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mGash\r\n\e[1A\e[18C"
+  - delay: 103
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mGashm\r\n\e[1A\e[19C"
+  - delay: 67
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mGashmo\r\n\e[1A\e[20C"
+  - delay: 158
+    content: "\e[1000D\e[2A\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m\e[36m Username \e[90m\e[1m› \e[0mGashmob\r\n\e[1A\e[21C"
+  - delay: 1485
+    content: "\e[1000D\e[2A\e[1A\e[0K\e[2K\e[32m\e[1m✔ \e[0mPlease provide some informations: \e[90m\e[1m· \e[0m\r\n\e[0K\e[2K\e[32m⦿ \e[0mFirstname \e[90m\e[1m› \e[0mKevin\r\n\e[0K\e[2K\e[32m⦿ \e[0m Lastname \e[90m\e[1m› \e[0mTraini\r\n\e[0K\e[2K\e[32m⦿ \e[0m Username \e[90m\e[1m› \e[0mGashmob\r\nHi Kevin Traini, also called Gashmob!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1698
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 3456
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 316
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 438
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 610
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 651
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36minput\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhat is your name? \e[90m\e[1m› \e[0m\e[90mJohn Doe\e[0m\e[8D"
+  - delay: 2170
+    content: "J\e[90mohn Doe\e[0m\e[7D"
+  - delay: 409
+    content: "ohn Doe\e[90m\e[0m"
+  - delay: 1114
+    content: "\e[1D\e[0K\e[90me\e[0m\e[1D"
+  - delay: 188
+    content: "\e[1D\e[0K\e[90moe\e[0m\e[2D"
+  - delay: 163
+    content: "\e[1D\e[0K\e[90mDoe\e[0m\e[3D"
+  - delay: 151
+    content: "\e[1D\e[0K\e[90m Doe\e[0m\e[4D"
+  - delay: 152
+    content: "\e[1D\e[0K\e[90mn Doe\e[0m\e[5D"
+  - delay: 154
+    content: "\e[1D\e[0K\e[90mhn Doe\e[0m\e[6D"
+  - delay: 162
+    content: "\e[1D\e[0K\e[90mohn Doe\e[0m\e[7D"
+  - delay: 183
+    content: "\e[1D\e[0K\e[90mJohn Doe\e[0m\e[8D"
+  - delay: 639
+    content: "K\e[0K"
+  - delay: 270
+    content: "e\e[0K"
+  - delay: 745
+    content: "\e[1D\e[0K\e[0K"
+  - delay: 153
+    content: "\e[1D\e[0K\e[90mJohn Doe\e[0m\e[8D"
+  - delay: 384
+    content: "J\e[90mohn Doe\e[0m\e[7D"
+  - delay: 276
+    content: "o\e[90mhn Doe\e[0m\e[6D"
+  - delay: 420
+    content: "hn Doe\e[90m\e[0m"
+  - delay: 687
+    content: "\e[1D\e[0K\e[90me\e[0m\e[1D"
+  - delay: 131
+    content: "\e[1D\e[0K\e[90moe\e[0m\e[2D"
+  - delay: 151
+    content: "\e[1D\e[0K\e[90mDoe\e[0m\e[3D"
+  - delay: 156
+    content: "\e[1D\e[0K\e[90m Doe\e[0m\e[4D"
+  - delay: 164
+    content: "\e[1D\e[0K\e[90mn Doe\e[0m\e[5D"
+  - delay: 198
+    content: "\e[1D\e[0K\e[90mhn Doe\e[0m\e[6D"
+  - delay: 343
+    content: "d\e[0K"
+  - delay: 377
+    content: "\e[1D\e[0K\e[90mhn Doe\e[0m\e[6D"
+  - delay: 178
+    content: "\e[1D\e[0K\e[90mohn Doe\e[0m\e[7D"
+  - delay: 154
+    content: "\e[1D\e[0K\e[90mJohn Doe\e[0m\e[8D"
+  - delay: 152
+    content: "\e[90mJohn Doe\e[0m\e[8D"
+  - delay: 407
+    content: "K\e[0K"
+  - delay: 256
+    content: "e\e[0K"
+  - delay: 243
+    content: "v\e[0K"
+  - delay: 134
+    content: "o\e[0K"
+  - delay: 74
+    content: "n\e[0K"
+  - delay: 487
+    content: "\e[1D\e[0K\e[0K"
+  - delay: 157
+    content: "\e[1D\e[0K\e[0K"
+  - delay: 495
+    content: "i\e[0K"
+  - delay: 73
+    content: "n\e[0K"
+  - delay: 204
+    content: " \e[0K"
+  - delay: 471
+    content: "T\e[0K"
+  - delay: 257
+    content: "r\e[0K"
+  - delay: 195
+    content: "a\e[0K"
+  - delay: 130
+    content: "n\e[0K"
+  - delay: 110
+    content: "i\e[0K"
+  - delay: 409
+    content: "\e[1D\e[0K\e[0K"
+  - delay: 113
+    content: "\e[1D\e[0K\e[0K"
+  - delay: 283
+    content: "i\e[0K"
+  - delay: 103
+    content: "n\e[0K"
+  - delay: 98
+    content: "i\e[0K"
+  - delay: 627
+    content: "\r\n\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhat is your name? \e[90m\e[1m· \e[0m\e[36mKevin Traini\e[0m\r\nHi Kevin Traini!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1422
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 687
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 165
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 192
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 597
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 1489
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 1064
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36minvisible\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhat is your secret? \e[90m\e[1m› \e[0m"
+  - delay: 5891
+    content: "\r\n\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhat is your secret? \e[90m\e[1m· \e[0m\r\nSorry, but I can't keep secrets! shhhh!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 3016
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 753
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 404
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 227
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 235
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 217
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 862
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mlist\e[0m\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 699
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mlist\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mType comma separated keywords \e[90m\e[1m› \e[0m"
+  - delay: 3441
+    content: a
+  - delay: 131
+    content: p
+  - delay: 132
+    content: p
+  - delay: 176
+    content: l
+  - delay: 182
+    content: e
+  - delay: 594
+    content: ','
+  - delay: 266
+    content: ' '
+  - delay: 740
+    content: b
+  - delay: 141
+    content: l
+  - delay: 79
+    content: u
+  - delay: 181
+    content: e
+  - delay: 464
+    content: b
+  - delay: 265
+    content: e
+  - delay: 533
+    content: r
+  - delay: 214
+    content: r
+  - delay: 278
+    content: 'y'
+  - delay: 915
+    content: ' '
+  - delay: 173
+    content: ' '
+  - delay: 173
+    content: ' '
+  - delay: 181
+    content: ' '
+  - delay: 524
+    content: ','
+  - delay: 2358
+    content: p
+  - delay: 264
+    content: e
+  - delay: 23
+    content: a
+  - delay: 317
+    content: r
+  - delay: 340
+    content: ' '
+  - delay: 180
+    content: ' '
+  - delay: 341
+    content: ','
+  - delay: 1471
+    content: ' '
+  - delay: 2747
+    content: e
+  - delay: 133
+    content: l
+  - delay: 110
+    content: s
+  - delay: 142
+    content: e
+  - delay: 893
+    content: "\r\n\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mType comma separated keywords \e[90m\e[1m· \e[0m\e[36mapple\e[0m, \e[36mblueberry\e[0m, \e[36mpear\e[0m, \e[36melse\e[0m\r\nYou typed 4 keywords:\r\n'apple' 'blueberry' 'pear' 'else' \r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 4614
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 871
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 202
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 193
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 166
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 168
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 185
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mlist\e[0m\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 160
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mmultiselect\e[0m\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 346
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mmultiselect\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose some colors \e[90m\e[1m› \e[0m\r\n\e[90m✔ \e[0m\e[36m\e[4mRed\e[0m\r\n\e[90m✔ \e[0mGreen\r\n\e[90m✔ \e[0mBlue\r\n\e[90m✔ \e[0mYellow\r\n\e[90m✔ \e[0mMagenta\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n\e[?25l"
+  - delay: 1217
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0m\e[36m\e[4mGreen\e[0m\r\n\e[90m✔ \e[0mBlue\r\n\e[90m✔ \e[0mYellow\r\n\e[90m✔ \e[0mMagenta\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 264
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[90m✔ \e[0m\e[36m\e[4mBlue\e[0m\r\n\e[90m✔ \e[0mYellow\r\n\e[90m✔ \e[0mMagenta\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 584
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[1m\e[32m✔ \e[0m\e[36m\e[4mBlue\e[0m\r\n\e[90m✔ \e[0mYellow\r\n\e[90m✔ \e[0mMagenta\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 813
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[1m\e[32m✔ \e[0mBlue\r\n\e[90m✔ \e[0m\e[36m\e[4mYellow\e[0m\r\n\e[90m✔ \e[0mMagenta\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 782
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[1m\e[32m✔ \e[0mBlue\r\n\e[90m✔ \e[0mYellow\r\n\e[90m✔ \e[0m\e[36m\e[4mMagenta\e[0m\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 673
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[1m\e[32m✔ \e[0mBlue\r\n\e[90m✔ \e[0mYellow\r\n\e[1m\e[32m✔ \e[0m\e[36m\e[4mMagenta\e[0m\r\n\e[90m✔ \e[0mCyan\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 355
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[1m\e[32m✔ \e[0mBlue\r\n\e[90m✔ \e[0mYellow\r\n\e[1m\e[32m✔ \e[0mMagenta\r\n\e[90m✔ \e[0m\e[36m\e[4mCyan\e[0m\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 1036
+    content: "\e[8A\e[1000D\e[90m✔ \e[0mRed\r\n\e[90m✔ \e[0mGreen\r\n\e[1m\e[32m✔ \e[0mBlue\r\n\e[90m✔ \e[0mYellow\r\n\e[1m\e[32m✔ \e[0mMagenta\r\n\e[1m\e[32m✔ \e[0m\e[36m\e[4mCyan\e[0m\r\n\e[90m✔ \e[0mWhite\r\n\e[90m✔ \e[0mBlack\r\n"
+  - delay: 1547
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose some colors \e[90m\e[1m· \e[0m\e[36mBlue\e[0m, \e[36mMagenta\e[0m, \e[36mCyan\e[0m\r\nYou chose 3 colors:\r\n'Blue' 'Magenta' 'Cyan' \r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 2488
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 692
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 178
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 171
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 181
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 174
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 173
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mlist\e[0m\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 147
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mmultiselect\e[0m\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 188
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mnumber\e[0m\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 498
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mnumber\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhat is the value of PI? \e[90m\e[1m› \e[0m"
+  - delay: 2078
+    content: '3'
+  - delay: 237
+    content: .
+  - delay: 283
+    content: '1'
+  - delay: 949
+    content: '4'
+  - delay: 847
+    content: "\r\n\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhat is the value of PI? \e[90m\e[1m· \e[0m\e[36m3.14\e[0m\r\nFor you PI is 3.14\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 2514
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 764
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 194
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 191
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 158
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 164
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 165
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mlist\e[0m\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 162
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mmultiselect\e[0m\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 162
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mnumber\e[0m\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 177
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mpassword\e[0m\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 390
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mpassword\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhat is your password? \e[90m\e[1m› \e[0m"
+  - delay: 4052
+    content: '*'
+  - delay: 342
+    content: '*'
+  - delay: 318
+    content: '*'
+  - delay: 84
+    content: '*'
+  - delay: 205
+    content: '*'
+  - delay: 268
+    content: '*'
+  - delay: 135
+    content: '*'
+  - delay: 427
+    content: '*'
+  - delay: 248
+    content: '*'
+  - delay: 459
+    content: '*'
+  - delay: 127
+    content: '*'
+  - delay: 815
+    content: "\r\n\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhat is your password? \e[90m\e[1m· \e[0m\e[36m***********\e[0m\r\nYour password count 11 characters\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 3890
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 790
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 187
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 178
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 170
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 162
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 171
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mlist\e[0m\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 159
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mmultiselect\e[0m\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 157
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mnumber\e[0m\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 179
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mpassword\e[0m\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 172
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mquiz\e[0m\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 527
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mquiz\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhich is yellow? \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mBanana\e[0m\r\n  Coconut\r\n  Strawberry\r\n\e[?25l"
+  - delay: 2069
+    content: "\e[3A\e[1000D  Banana\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mCoconut\e[0m\r\n  Strawberry\r\n"
+  - delay: 1222
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhich is yellow? \e[90m\e[1m· \e[0m\e[31mCoconut\e[0m\r\nBad answer!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1123
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 956
+    content: "\e[14A\e[1000D  auth\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mautocomplete\e[0m\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 198
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mconfirm\e[0m\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 174
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mform\e[0m\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 172
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minput\e[0m\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 156
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n\e[36m\e[1m> \e[0m\e[36m\e[4minvisible\e[0m\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 172
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mlist\e[0m\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 171
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mmultiselect\e[0m\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 165
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mnumber\e[0m\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 170
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mpassword\e[0m\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 171
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mquiz\e[0m\r\n  slider\r\n  select\r\n  toggle\r\n"
+  - delay: 345
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mquiz\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhich is yellow? \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mBanana\e[0m\r\n  Coconut\r\n  Strawberry\r\n\e[?25l"
+  - delay: 1694
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhich is yellow? \e[90m\e[1m· \e[0m\e[32mBanana\e[0m\r\nGood answer!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 3151
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 961
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mtoggle\e[0m\r\n"
+  - delay: 250
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mselect\e[0m\r\n  toggle\r\n"
+  - delay: 254
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mslider\e[0m\r\n  select\r\n  toggle\r\n"
+  - delay: 1302
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mslider\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mHow much do you want? \e[90m\e[1m› \e[0m\r\n        \e[1m1\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m\e[?25l"
+  - delay: 1240
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m2\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 437
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m3\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 173
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m4\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 830
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m5\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 566
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m6\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 809
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m5\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 182
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m4\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 164
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m3\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 164
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m2\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 659
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m3\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 163
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m4\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 160
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m5\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 169
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m6\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 159
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m7\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 156
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m8\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 180
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m9\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 178
+    content: "\e[2K\e[1A\e[2K\e[1000D       \e[1m10\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 200
+    content: "\e[2K\e[1A\e[2K\e[1000D       \e[1m10\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 533
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m9\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 439
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m8\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 173
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m7\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 167
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m6\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 180
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m5\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 171
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m4\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 178
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m3\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 171
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m2\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 171
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m1\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 265
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m0\e[0m\r\n  \e[36m\e[1m<\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 644
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m1\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 866
+    content: "\e[2K\e[1A\e[2K\e[1000D        \e[1m2\e[0m\r\n  \e[36m\e[1m<\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m#\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[90m-\e[0m\e[36m\e[1m>\e[0m"
+  - delay: 590
+    content: "\e[?25h\e[2K\e[1A\e[2K\e[1A\e[2K\e[1000D\e[2K\e[32m\e[1m✔ \e[0mHow much do you want? \e[90m\e[1m· \e[0m\e[36m2\e[0m\r\nYou want 2 potatoes\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 3407
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 928
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mtoggle\e[0m\r\n"
+  - delay: 234
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mselect\e[0m\r\n  toggle\r\n"
+  - delay: 562
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mselect\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhich is the best one? \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mc++\e[0m\r\n  python\r\n  java\r\n\e[?25l"
+  - delay: 1368
+    content: "\e[3A\e[1000D  c++\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mpython\e[0m\r\n  java\r\n"
+  - delay: 439
+    content: "\e[3A\e[1000D  c++\r\n  python\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mjava\e[0m\r\n"
+  - delay: 481
+    content: "\e[3A\e[1000D  c++\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mpython\e[0m\r\n  java\r\n"
+  - delay: 1314
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhich is the best one? \e[90m\e[1m· \e[0m\e[36mpython\e[0m\r\nIt's your choice, but I prefer c++\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 2633
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 674
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mtoggle\e[0m\r\n"
+  - delay: 270
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mselect\e[0m\r\n  toggle\r\n"
+  - delay: 523
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mselect\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mWhich is the best one? \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mc++\e[0m\r\n  python\r\n  java\r\n\e[?25l"
+  - delay: 1216
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mWhich is the best one? \e[90m\e[1m· \e[0m\e[36mc++\e[0m\r\nYou are right!\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 2300
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 910
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mtoggle\e[0m\r\n"
+  - delay: 590
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mtoggle\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mLight? \e[90m\e[1m› \e[0m\e[36m\e[4mOn\e[0m/Off\e[0m\e[?25l"
+  - delay: 733
+    content: "\e[6D\e[0KOn\e[0m/\e[36m\e[4mOff\e[0m"
+  - delay: 1393
+    content: "\e[6D\e[0K\e[36m\e[4mOn\e[0m/Off\e[0m"
+  - delay: 581
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mLight? \e[90m\e[1m· \e[0m\e[32mOn\e[0m\r\nSwitch on the light\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1926
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[32mYes\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mChoose a function to test: \e[90m\e[1m› \e[0m\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mauth\e[0m\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n  toggle\r\n\e[?25l"
+  - delay: 684
+    content: "\e[14A\e[1000D  auth\r\n  autocomplete\r\n  confirm\r\n  form\r\n  input\r\n  invisible\r\n  list\r\n  multiselect\r\n  number\r\n  password\r\n  quiz\r\n  slider\r\n  select\r\n\e[36m\e[1m> \e[0m\e[36m\e[4mtoggle\e[0m\r\n"
+  - delay: 381
+    content: "\e[?25h\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[0K\e[1A\e[1000D\e[2K\e[32m\e[1m✔ \e[0mChoose a function to test: \e[90m\e[1m· \e[0m\e[36mtoggle\e[0m\r\n\e[2K\e[36m\e[1m? \e[0mLight? \e[90m\e[1m› \e[0m\e[36m\e[4mOn\e[0m/Off\e[0m\e[?25l"
+  - delay: 528
+    content: "\e[6D\e[0KOn\e[0m/\e[36m\e[4mOff\e[0m"
+  - delay: 692
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mLight? \e[90m\e[1m· \e[0m\e[31mOff\e[0m\r\nSwitch off the light\r\n\e[2K\e[36m\e[1m? \e[0mDo you want to test another function? \e[90m\e[1m› \e[0mYes\e[?25l"
+  - delay: 1054
+    content: "\e[3D\e[0KNo"
+  - delay: 1967
+    content: "\e[?25h\e[1000D\e[2K\e[32m\e[1m✔ \e[0mDo you want to test another function? \e[90m\e[1m· \e[0m\e[31mNo\e[0m\r\n\e]0;kevin@fred:~\e\\\e]7;file://fred/home/kevin\e\\\e]0;kevin@fred: ~\a\e[01;32mkevin@fred\e[00m:\e[01;34m~\e[00m$ "

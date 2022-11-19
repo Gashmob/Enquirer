@@ -1,27 +1,49 @@
 # Enquirer
 
+[![wakatime](https://wakatime.com/badge/github/Gashmob/Enquirer.svg)](https://wakatime.com/badge/github/Gashmob/Enquirer)
+[![Tests](https://github.com/Gashmob/Enquirer/actions/workflows/test.yml/badge.svg)](https://github.com/Gashmob/Enquirer/actions/workflows/test.yml)
+
 A collection of function to make an interactive CLI. Inspired by [Enquirer.js](https://www.npmjs.com/package/enquirer).
+
+**Full demo**
+
+![Full demo](medias/full_demo.gif)
 
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Auth](#auth)
-  - [Autocomplete](#autocomplete)
-  - [Confirm](#confirm)
-  - [Form](#form)
-  - [Input](#input)
-  - [Invisible](#invisible)
-  - [List](#list)
-  - [MultiSelect](#multiselect)
-  - [Number](#number)
-  - [Quiz](#quiz)
-  - [Slider](#slider)
-  - [Select](#select)
-  - [Toggle](#toggle)
-- [TODO](#todo)
+    - [Auth](#auth)
+    - [Autocomplete](#autocomplete)
+    - [Confirm](#confirm)
+    - [Form](#form)
+    - [Input](#input)
+    - [Invisible](#invisible)
+    - [List](#list)
+    - [MultiSelect](#multiselect)
+    - [Number](#number)
+    - [Password](#password)
+    - [Quiz](#quiz)
+    - [Slider](#slider)
+    - [Select](#select)
+    - [Toggle](#toggle)
+- [Tests](#tests)
+
+Have use [Terminalizer](https://github.com/faressoft/terminalizer) to record the demo.
 
 ## Installation
 
 This library is a header only, so you can just add the header (`include/enquirer/enquirer.hpp`) in your project.
+
+For example if you use a `CMakeLists.txt`, copy `include` dir in your project and add this to your `CMakeLists.txt`:
+
+```cmake
+add_executable(<target>
+        ...
+        include/enquirer/enquirer.hpp)
+
+target_include_directories(<target> PUBLIC include)
+```
+
+So now, you can just add `#include <enquirer/enquirer.hpp>` in your source files.
 
 ## Usage
 
@@ -29,6 +51,8 @@ Please note :
 
 - All functions are in the `enquirer` namespace.
 - All functions are synchronous (wait until user submit).
+
+You can try the demo by building the `demo` target.
 
 ### Auth
 
@@ -43,25 +67,27 @@ There is 2 prototypes :
 
 ```c++
 std::pair<std::string, std::string> auth(const std::string &id_prompt = "Username",
-                                         const std::string &pw_prompt = "Password");
+                                         const std::string &pw_prompt = "Password",
+                                         char mask = '*');
 
-bool auth(std::function<bool(std::pair<std::string, std::string>)> &predicate,
+bool auth(const std::function<bool(const std::pair<std::string, std::string> &)> &predicate,
           const std::string &id_prompt = "Username",
-          const std::string &pw_prompt = "Password");
+          const std::string &pw_prompt = "Password",
+          char mask = '*');
 ```
 
 **Example**
 
 ```c++
-bool is_valid = enquirer::auth([](std::pair<std::string, std::string> credentials) {
+bool is_valid = enquirer::auth([](const std::pair<std::string, std::string> &credentials) {
     return credentials.first == "admin"
-        && credentials.second == "admin";
+           && credentials.second == "admin";
 });
 ```
 
 **Result**
 
-![Image]()
+![Auth](medias/auth.gif)
 
 ### Autocomplete
 
@@ -92,7 +118,7 @@ std::string answer = enquirer::autocomplete("What is you favorite fruit", {
 
 **Result**
 
-![Image]()
+![Autocomplete](medias/autocomplete.gif)
 
 ### Confirm
 
@@ -101,7 +127,8 @@ Ask the user to confirm.
 **Prototype**
 
 ```c++
-bool confirm(const std::string &question);
+bool confirm(const std::string &question,
+             bool default_value = false);
 ```
 
 **Example**
@@ -115,7 +142,7 @@ while (!quit) {
 
 **Result**
 
-![Image]()
+![Confirm](medias/confirm.gif)
 
 ### Form
 
@@ -125,18 +152,22 @@ Multi-prompt for user
 
 ```c++
 std::map<std::string, std::string> form(const std::string &question,
-                                        const std::string inputs[])
+                                        const std::vector<std::string> &inputs);
 ```
 
 **Example**
 
 ```c++
-auto result = enquirer::form("Please provide some informations:", {
-    "firstname",
-    "lastname",
-    "username"
+auto answers = enquirer::form("Please provide some informations:", {
+        "Firstname",
+        "Lastname",
+        "Username"
 });
 ```
+
+**Result**
+
+![Form](medias/form.gif)
 
 ### Input
 
@@ -157,7 +188,7 @@ std::string answer = enquirer::input("What is your name?", "John Doe");
 
 **Result**
 
-![Image]()
+![Input](medias/input.gif)
 
 ### Invisible
 
@@ -177,7 +208,7 @@ std::string secret = enquirer::invisible("What is your secret?");
 
 **Result**
 
-![Image]()
+![Invisible](medias/invisible.gif)
 
 ### List
 
@@ -192,12 +223,12 @@ std::vector<std::string> list(const std::string &question);
 **Example**
 
 ```c++
-auto keywords = enquirer:list("Type comma separated keywords")
+auto keywords = enquirer::list("Type comma separated keywords");
 ```
 
 **Result**
 
-![Image]()
+![List](medias/list.gif)
 
 ### MultiSelect
 
@@ -227,7 +258,7 @@ auto choices = enquirer::multi_select("Choose some colors", {
 
 **Result**
 
-![Image]()
+![MultiSelect](medias/multiselect.gif)
 
 ### Number
 
@@ -236,21 +267,22 @@ Ask the user for a number
 **Prototype**
 
 ```c++
-template<typename N>
-typename std::enable_if<std::is_arithmetic<N>::value>::type number(const std::string &question);
+template<typename N,
+        typename = typename std::enable_if<std::is_arithmetic<N>::value>::type>
+N number(const std::string &question);
 ```
 
 **Example**
 
 ```c++
-double pi = enquirer::number<double>("What is the value of PI?");
+auto pi = enquirer::number<double>("What is the value of PI?");
 ```
 
 **Result**
 
-![Image]()
+![Number](medias/number.gif)
 
-### Password
+### Password
 
 Mask the user input with `*`.
 
@@ -269,7 +301,7 @@ auto pwd = enquirer::password("What is your password?");
 
 **Result**
 
-![Image]()
+![Password](medias/password.gif)
 
 ### Quiz
 
@@ -279,15 +311,14 @@ Multi-choice quiz !
 
 ```c++
 bool quiz(const std::string &question,
-          const std::string choices[],
+          const std::vector<std::string> &choices,
           const std::string &correct);
 ```
 
 **Example**
 
 ```c++
-auto choices = {"Banana", "Coconut", "Strawberry"};
-if (enquirer::quiz("Which is yellow?", choices, "Banana"))
+if (enquirer::quiz("Which is yellow?", {"Banana", "Coconut", "Strawberry"}, "Banana"))
     std::cout << "Good answer!" << std::endl;
 else
     std::cout << "Bad answer!" << std::endl;
@@ -295,7 +326,7 @@ else
 
 **Result**
 
-![Image]()
+![Quiz](medias/quiz.gif)
 
 ### Slider
 
@@ -304,23 +335,24 @@ Allow user to choose a value in a range.
 **Prototype**
 
 ```c++
-template<typename N>
-typename std::enable_if<std::is_arithmetic<N>::value>::type slider(const std::string &question,
-                                                                   N min_value,
-                                                                   N max_value,
-                                                                   N step,
-                                                                   N initial_value);
+template<typename N,
+        typename = typename std::enable_if<std::is_arithmetic<N>::value>::type>
+N slider(const std::string &question,
+         N min_value,
+         N max_value,
+         N step,
+         N initial_value);
 ```
 
 **Example**
 
 ```c++
-int value = enquirer::slider("How much do you want?", 0, 10, 1, 1);
+int value = enquirer::slider<int>("How much do you want?", 0, 10, 1, 1);
 ```
 
 **Result**
 
-![Image]()
+![Slider](medias/slider.gif)
 
 ### Select
 
@@ -330,22 +362,22 @@ Choose one item from a list.
 
 ```c++
 std::string select(const std::string &question,
-                   const std::string choices[]);
+                   const std::vector<std::string> &choices);
 ```
 
 **Example**
 
 ```c++
-auto choice = enquirer::select("Which is the best one?", {
-    "c++",
-    "python",
-    "java"
+auto language = enquirer::select("Which is the best one?", {
+        "c++",
+        "python",
+        "java"
 });
 ```
 
 **Result**
 
-![Image]()
+![Select](medias/select.gif)
 
 ### Toggle
 
@@ -356,32 +388,24 @@ Choose between two values.
 ```c++
 bool toggle(const std::string &question,
             const std::string &enable,
-            const std::string &disable);
+            const std::string &disable,
+            bool default_value = false);
 ```
 
 **Example**
 
 ```c++
-bool quit = !enquirer::toggle("Continue?", "Yes", "No");
+bool light = enquirer::toggle("Light?", "On", "Off", true);
 ```
 
 **Result**
 
-![Image]()
+![Toggle](medias/toggle.gif)
 
-## TODO
+## Tests
 
-- [ ] Auth
-- [ ] Autocomplete
-- [ ] Confirm
-- [ ] Form
-- [ ] Input
-- [ ] Invisible
-- [ ] List
-- [ ] MultiSelect
-- [ ] Number
-- [ ] Quiz
-- [ ] Slider
-- [ ] Select
-- [ ] Toggle
-- [ ] _**Tests**_
+All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu and macOS.
+The tests sources are located in `tests/test.cpp` and use
+a [simple c++ test framework](https://gist.github.com/Gashmob/0f11b5b5546e1e9893f52143a5b35e50). You can run the tests
+by building the `test` target.
+
