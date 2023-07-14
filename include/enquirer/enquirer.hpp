@@ -842,7 +842,9 @@ namespace enquirer {
                         // Ignore arrow keys
                     }
                 }
-            } else if (std::isdigit(current) || current == '.') { // 'Normal' character
+            } else if (std::isdigit(current) ||
+                       (current == '.' && answer.find('.') == std::string::npos) ||
+                       ((current == '+' || current == '-') && answer.empty())) { // 'Normal' character
                 answer += current;
                 std::cout << current;
             }
