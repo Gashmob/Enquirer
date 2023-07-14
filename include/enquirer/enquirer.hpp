@@ -639,8 +639,6 @@ namespace enquirer {
                 } else if (current == 127) { // Backspace
                     if (!answer.empty()) {
                         answer.pop_back();
-                        std::cout << utils::move_left(1);
-                        std::cout << utils::clear_line(utils::EOL);
                     }
                 } else if (current == 27) { // Escape
                     std::cin.get(current);
