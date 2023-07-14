@@ -7,7 +7,7 @@
 #ifndef ENQUIRER_HPP
 #define ENQUIRER_HPP
 
-#define ENQUIRER_VERSION "1.0.0"
+#define ENQUIRER_VERSION "1.0.1"
 
 #include <iostream>
 #include <functional>
