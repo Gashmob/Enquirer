@@ -1,13 +1,30 @@
 /**
- *     === Enquirer ===
- * Created by Kevin Traini
- *      Under GPL-3.0
- * -----------------------
+ * MIT License
+ *
+ * Copyright (c) 2023 Kevin Traini
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 #ifndef ENQUIRER_HPP
 #define ENQUIRER_HPP
 
-#define ENQUIRER_VERSION "1.0.0"
+#define ENQUIRER_VERSION "1.0.1"
 
 #include <iostream>
 #include <functional>
@@ -639,8 +656,6 @@ namespace enquirer {
                 } else if (current == 127) { // Backspace
                     if (!answer.empty()) {
                         answer.pop_back();
-                        std::cout << utils::move_left(1);
-                        std::cout << utils::clear_line(utils::EOL);
                     }
                 } else if (current == 27) { // Escape
                     std::cin.get(current);
@@ -844,7 +859,9 @@ namespace enquirer {
                         // Ignore arrow keys
                     }
                 }
-            } else if (std::isdigit(current) || current == '.') { // 'Normal' character
+            } else if (std::isdigit(current) ||
+                       (current == '.' && answer.find('.') == std::string::npos) ||
+                       ((current == '+' || current == '-') && answer.empty())) { // 'Normal' character
                 answer += current;
                 std::cout << current;
             }

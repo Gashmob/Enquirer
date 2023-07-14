@@ -1,6 +1,5 @@
 # Enquirer
 
-[![wakatime](https://wakatime.com/badge/github/Gashmob/Enquirer.svg)](https://wakatime.com/badge/github/Gashmob/Enquirer)
 [![Tests](https://github.com/Gashmob/Enquirer/actions/workflows/test.yml/badge.svg)](https://github.com/Gashmob/Enquirer/actions/workflows/test.yml)
 
 A collection of function to make an interactive CLI. Inspired by [Enquirer.js](https://www.npmjs.com/package/enquirer).
@@ -406,6 +405,6 @@ bool light = enquirer::toggle("Light?", "On", "Off", true);
 
 All tests are run for each push via [GitHub Actions](https://github.com/Gashmob/Enquirer/actions) on Ubuntu and macOS.
 The tests sources are located in `tests/test.cpp` and use
-a [simple c++ test framework](https://gist.github.com/Gashmob/0f11b5b5546e1e9893f52143a5b35e50). You can run the tests
-by building the `test` target.
+a [simple c++ test framework](https://github.com/Gashmob/Cpp-Tests). You can run the tests by building the `test`
+target.
 
