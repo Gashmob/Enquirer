@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.1
+
+*2023-07-14*
+
+**Bug fix:**
+- Cannot add + or - when input number 
+- Erase invisible input
+
 ## v1.0.0
 
 *2022-11-19*
