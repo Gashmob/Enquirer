@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.2
+
+- Update CMakeLists.txt to make it usable with FetchContent
+- Update source code with modern c++
+
 ## v1.0.1
 
 *2023-07-14*
