@@ -2,6 +2,8 @@
 
 ## v1.0.2
 
+*2024-01-13*
+
 - Update CMakeLists.txt to make it usable with FetchContent
 - Update source code with modern c++
 - Rewrite tests with googletest
