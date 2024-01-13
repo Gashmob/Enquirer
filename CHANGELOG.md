@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.0.2
+
+*2024-01-13*
+
+- Update CMakeLists.txt to make it usable with FetchContent
+- Update source code with modern c++
+- Rewrite tests with googletest
+
+## v1.0.1
+
+*2023-07-14*
+
+**Bug fix:**
+- Cannot add + or - when input number 
+- Erase invisible input
+
 ## v1.0.0
 
 *2022-11-19*
