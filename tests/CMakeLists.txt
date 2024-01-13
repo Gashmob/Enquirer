@@ -18,3 +18,4 @@ add_executable(unit-tests
         tests.cpp
 )
 target_link_libraries(unit-tests PRIVATE enquirer gtest_main gtest gmock)
+gtest_discover_tests(unit-tests)

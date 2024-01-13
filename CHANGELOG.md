@@ -4,6 +4,7 @@
 
 - Update CMakeLists.txt to make it usable with FetchContent
 - Update source code with modern c++
+- Rewrite tests with googletest
 
 ## v1.0.1
 
