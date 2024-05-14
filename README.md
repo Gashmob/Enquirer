@@ -8,7 +8,7 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
 
 ![Full demo](medias/full_demo.gif)
 
-- [Installation](#installation)
+- [Use it in your project](#use-it-in-your-project)
 - [Usage](#usage)
     - [Auth](#auth)
     - [Autocomplete](#autocomplete)
