@@ -28,21 +28,28 @@ A collection of function to make an interactive CLI. Inspired by [Enquirer.js](h
 
 Have use [Terminalizer](https://github.com/faressoft/terminalizer) to record the demo.
 
-## Installation
+## Use it in your project
 
-This library is a header only, so you can just add the header (`include/enquirer/enquirer.hpp`) in your project.
-
-For example if you use a `CMakeLists.txt`, copy `include` dir in your project and add this to your `CMakeLists.txt`:
+For CMake based projects, you can simply use `FetchContent` this way:
 
 ```cmake
-add_executable(<target>
-        ...
-        include/enquirer/enquirer.hpp)
+FetchContent_Declare(
+        enquirer
+        GIT_REPOSITORY https://github.com/Gashmob/Enquirer.git
+        GIT_TAG v1.0.2
+)
+FetchContent_GetProperties(enquirer)
 
-target_include_directories(<target> PUBLIC include)
+if(NOT enquirer_POPULATED)
+    message(STATUS "Fetching enquirer...")
+    FetchContent_Populate(enquirer)
+    add_subdirectory(${enquirer_SOURCE_DIR} ${enquirer_BINARY_DIR})
+endif()
+
+target_link_libraries(my_target PUBLIC enquirer)
 ```
 
-So now, you can just add `#include <enquirer/enquirer.hpp>` in your source files.
+Then the include path is just `#include <enquirer.h>`
 
 ## Usage
 
